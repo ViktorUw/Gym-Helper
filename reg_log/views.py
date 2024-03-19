@@ -17,22 +17,22 @@ def user_registration(request):
         form = UserRegForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('login'))
+            return HttpResponseRedirect(reverse('mainPage'))
             
     
 
-    return render(request, 'reg_log/registration.html',{'form':form})
+    return render(request, 'reg_log/registration.html', {'form':form})
 
 def user_login(request):
     if request.method == "POST":
         form = UserLogForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, username=cd['username'],
+            user = authenticate(request, email=cd['email'],
                                 password = cd['password1'])
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(reverse('homepage'))
+                return HttpResponseRedirect(reverse('mainPage'))
     else:
         form = UserLogForm()
 
