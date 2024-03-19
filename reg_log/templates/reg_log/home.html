@@ -1,0 +1,26 @@
+{% extends 'reg_log/layout.html' %}
+
+
+{% block title %} Gym Helper {% endblock %}
+
+{% block content %} 
+
+<body class="bodyHome">
+
+    <div class="welcome">
+        <div class="welcome_textDiv"> 
+            <p class="welcome_text">Witam, Klubowiczu w mojej aplikacji webowej</p>
+            <p class="welcome_text">Miło mi że jesteś z nami</p>    
+        </div>
+        <div class="welcome_regLogDiv">
+            <a href="{% url 'registration' %}"> <button type="button" class="btn btn-outline-success">Zarejestruj się</button> </a>
+            <p class="welcome_text "> Może już masz konto | <a href="{%url 'login' %}" class="link-secondary">Zaloguj się</a></p>
+            
+        </div>
+    </div>    
+</body>
+
+
+
+
+{% endblock %}

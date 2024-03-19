@@ -1,0 +1,32 @@
+{% extends 'reg_log/layout.html' %}
+
+
+{% block title %} Logowanie {% endblock %}
+
+
+{% block content %}
+<body class="bodyLog">
+    <div class="welcome wLog">
+        <h1> Logowanie </h1>
+        <br>
+        <div class="backBtn">
+            <a href="{% url 'homepage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
+        </div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p}}
+            
+            
+            
+            
+            <input type="submit" class="btn btn-outline-success " value="Zaloguj"> 
+            
+
+        </form>
+
+
+
+    </div>       
+</body>
+{% endblock %}
+

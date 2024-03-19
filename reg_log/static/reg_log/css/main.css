@@ -1,0 +1,78 @@
+body{
+    /* background-image: url("{% static 'reg_log/img/1.jpg' %}"); */
+    
+    background-repeat: no-repeat;
+    background-attachment: fixed;  
+    background-size: cover;
+}
+.form-control{
+    margin: 0 auto;
+    width: 50%;
+}
+a{
+    text-decoration: none;
+}
+
+p,h1,h2,h3,h4,h5{
+    color: #fff;
+    
+}
+
+.welcome{
+    padding-top: 45px;
+    opacity: 90%;
+    border-radius: 30px;
+    width: 50%;
+    height: 250px;
+    text-align: center;
+    background-color: rgb(74, 21, 127);
+    margin: 0 auto;
+    margin-top: 230px;
+}
+.btn-outline-success{
+    height: 50px;
+    width: 300px;
+    margin-top: 15px;
+    transition: .4s;
+}
+
+
+/* HOMEPAGE  */
+
+.bodyHome{
+    background-image: url("/static/reg_log/jpg/1.jpg");
+}
+
+/* REJESTRATION PAGE  */
+
+.bodyReg{
+    background-image: url("/static/reg_log/jpg/4.jpg");
+}
+
+.wReg{
+    height: 550px;
+}
+
+.backBtn{
+    position: absolute;
+    top: 250px;
+    left: 480px;
+    
+}
+
+.material-symbols-outlined{
+    color: #b48484;
+    
+}
+/* LOGOWANIE PAGE */
+
+.bodyLog{
+    background-image: url("/static/reg_log/jpg/8.jpg");
+}
+
+.wLog{
+    height: 350px;
+}
+
+
+
