@@ -20,6 +20,5 @@ class UserRegForm(UserCreationForm):
 
 
 class UserLogForm(forms.Form):
-    # mail = forms.CharField(label='', widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'eMail'}))
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Imię'}))
+    email = forms.CharField(label='', widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'email'}))
     password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Hasło'}))

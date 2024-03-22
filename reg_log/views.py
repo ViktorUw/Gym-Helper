@@ -28,7 +28,7 @@ def user_login(request):
         form = UserLogForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, email=cd['email'],
+            user = authenticate(request, username=cd['email'],
                                 password = cd['password1'])
             if user is not None:
                 login(request, user)
