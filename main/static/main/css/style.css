@@ -59,9 +59,13 @@ a{
 
 /* KONTENT */
 .content{
+    font-size: 120%;
     margin: 30px;
     padding: 10px;
     border-radius: 10px;
-    background-color:rgba(0, 0, 0, 0.7);
-    height: 700px;
+    background-color:rgba(0, 0, 0, 1);
+    height: 100%;
 }
+
+
+/* User Page */

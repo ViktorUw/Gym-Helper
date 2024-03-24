@@ -5,4 +5,16 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request, 'main/index.html')
+
+def user_info(request):
+    return render(request, 'main/user.html')
+
+def trainings(request):
+    return render(request, 'main/trainings.html')
+
+def training_plans(request):
+    return render(request, 'main/training_plans.html')
+
+def exercises(request):
+    return render(request, 'main/exercises.html')
     

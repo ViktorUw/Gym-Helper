@@ -14,40 +14,48 @@
 </head>
 <body class="bodyMain">
     <div class="navbar">
-        <a href="#">
+        <a href="{% url 'mainPage' %}">
             <div class="nav_section">
                     <div class="nav_ico"><span class="material-symbols-outlined">home</span> </div>
-                    <div class="nav_text">Home</div>
+                    <!-- <div class="nav_text">Home</div> -->
             </div>
         </a>
-        <a href="#">
+        <a href="{% url 'trainingsPage' %}">
+            <div class="nav_section">
+                    <div class="nav_ico"><span class="material-symbols-outlined">sports_gymnastics</span> </div>
+                    <div class="nav_text">Treningi Realizowane</div>
+            </div>
+        </a>
+        <a href="{% url 'trainingPlansPage' %}">
+            <div class="nav_section">
+                    <div class="nav_ico"><span class="material-symbols-outlined">sports_gymnastics</span> </div>
+                    <div class="nav_text">Plany Treningów</div>
+            </div>
+        </a>
+        <a href="{% url 'exercisesPage' %}">
             <div class="nav_section">
                     <div class="nav_ico"><span class="material-symbols-outlined">fitness_center</span> </div>
                     <div class="nav_text">Cwiczenia</div>
             </div>
         </a>
-        <a href="#">
-            <div class="nav_section">
-                    <div class="nav_ico"><span class="material-symbols-outlined">sports_gymnastics</span> </div>
-                    <div class="nav_text">Treningi</div>
-            </div>
-        </a>
-        <a href="#">
+        <!-- <a href="#">
             <div class="nav_section">
                     <div class="nav_ico"><span class="material-symbols-outlined">weight</span> </div>
                     <div class="nav_text">Waga</div>
             </div>
-        </a>
+        </a> -->
                 
-        <a href="#">
+        <a href="{% url 'userPage' %}">
             <div class="nav_section">
                     <div class="nav_ico"><span class="material-symbols-outlined">person</span> </div>
-                    <div class="nav_text">Witaj {{ user.first_name }}</div>
+                    <div class="nav_text">Witaj {{ user.first_name }} | <a href="{% url 'homepage' %}"> Wyloguj</a></div>
             </div>
         </a>
     </div>
+    <div class="content">
 {% block content %}
     
 {% endblock %}
+</div>
 </body>
 </html>

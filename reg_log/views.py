@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -17,7 +18,7 @@ def user_registration(request):
         form = UserRegForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('mainPage'))
+            return HttpResponseRedirect(reverse('login'))
             
     
 
@@ -33,8 +34,11 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect(reverse('mainPage'))
+            
+
     else:
         form = UserLogForm()
+
 
 
     return render(request, 'reg_log/login.html', {'form':form})
