@@ -48,14 +48,15 @@
         <a href="{% url 'userPage' %}">
             <div class="nav_section">
                     <div class="nav_ico"><span class="material-symbols-outlined">person</span> </div>
-                    <div class="nav_text">Witaj {{ user.first_name }} | <a href="{% url 'homepage' %}"> Wyloguj</a></div>
+                    <div class="nav_text">Witaj {{ user.first_name }} | <a href="{% url 'logout' %}"> Wyloguj</a></div>
             </div>
         </a>
     </div>
     <div class="content">
-{% block content %}
+        {% include 'reg_log/messages.html' %}
+    {% block content %}
     
-{% endblock %}
-</div>
+    {% endblock %}
+    </div>
 </body>
 </html>

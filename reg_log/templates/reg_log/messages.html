@@ -1,0 +1,60 @@
+<style>
+    .messages-container {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .messages-title {
+        position: relative;
+        padding: 10px 20px;
+        margin: 10px 0;
+        border-radius: 5px;
+        background-color: #332f2f;
+        color: #ffffff;
+        font-size: 16px;
+    }
+
+    .messages-title .close {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        font-size: 20px;
+        color: #721c24;
+        cursor: pointer;
+    }
+    
+</style>
+{% if user.is_authenticate %}
+    <p class="messages-title">Zalogowano jako: {{ user.first_name }} {{ user.last_name }}</p>
+{% else %}
+
+    {% if messages %}
+    <div class="messages-container">
+        {% for message in messages %}
+        <p class="messages-title"> {{ message }} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </p>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+{% endif %} 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var closeButtons = document.querySelectorAll('.messages-title .close');
+        closeButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                this.parentElement.style.display = 'none';
+            });
+        });
+    });
+</script>

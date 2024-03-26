@@ -1,11 +1,8 @@
 {% extends 'reg_log/layout.html' %}
 
-
-{% block title %} Rejestracja {% endblock %}
-
-
 {% block content %}
 <body class="bodyReg">  
+    {% include 'reg_log/messages.html' %}
     <div class="welcome wReg">
         <div class="backBtn">
             <a href="{% url 'homepage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
@@ -20,9 +17,7 @@
             <input type="submit" class="btn btn-outline-success " value="Zarejestruj się"> 
 
         </form>
-        
-
-
     </div>    
+    
 </body>
 {% endblock %}

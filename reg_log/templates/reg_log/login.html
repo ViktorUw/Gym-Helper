@@ -5,6 +5,7 @@
 
 
 {% block content %}
+{% include 'reg_log/messages.html' %}
 <body class="bodyLog">
     <div class="welcome wLog">
         <h1> Logowanie </h1>
@@ -12,9 +13,10 @@
         <div class="backBtn">
             <a href="{% url 'homepage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
         </div>
-        <form action="" method="POST">
+        <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
             {{ form.as_p}}
+            
             
             
             
@@ -23,7 +25,6 @@
             
 
         </form>
-
 
 
     </div>       
