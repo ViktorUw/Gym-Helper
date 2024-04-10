@@ -55,6 +55,30 @@ a{
     cursor: pointer;
 }
 
+.text_welcome{
+    margin-right: 20px;
+}
+.nav_section:hover  .nav_ico {
+    color: #8c8a82;
+}
+.nav_section:hover  .nav_text {
+    color: #8c8a82;
+}
+.nav_section:hover  .text_welcome {
+    color: #8c8a82;
+}
+.text_logout:hover .logout_btn{
+    color: red;
+}
+.nav_text:hover {
+    color: #8c8a82;
+}
+.nav_text{
+    display: flex;
+}
+
+
+
 
 
 /* KONTENT */

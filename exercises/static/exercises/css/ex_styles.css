@@ -1,0 +1,47 @@
+/* EXERSISES */
+.category{
+    font-size: 130%;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:rgba(0, 0, 0, .8);
+    height: 100%;
+}
+
+/* EXERSISE */
+.ex__item{
+    background-color:rgba(0, 0, 0, .8);
+    margin: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:rgba(0, 0, 0, .9);
+    height: 100%;
+}
+.ex__name{
+    width: 50%;
+    height: 60px;
+    text-align: center;
+    
+}
+.ex__gif{
+    width: 820px;
+    height: 520px;
+    /* background-color: transparent; */
+    position: relative;
+    top: -125px;
+    left: 990px;
+    z-index: 1;
+}
+.ex__description{
+    position: relative;
+    top: -550px;
+    left: 0px;
+    width: 50%;
+}
+.backBtn_div{
+    position: relative;
+    top: -27px;
+    left: -200px;
+    width: 50%;
+    text-align: center;
+}

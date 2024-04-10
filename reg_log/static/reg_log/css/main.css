@@ -33,6 +33,7 @@ p,h1,h2,h3,h4,h5{
     height: 50px;
     width: 300px;
     margin-top: 15px;
+    margin-bottom: 15px;
     transition: .4s;
 }
 
@@ -50,7 +51,8 @@ p,h1,h2,h3,h4,h5{
 }
 
 .wReg{
-    height: 550px;
+    /* height: 550px; */
+    height: 100%;
 }
 
 .backBtn{
@@ -71,7 +73,8 @@ p,h1,h2,h3,h4,h5{
 }
 
 .wLog{
-    height: 350px;
+    /* height: 350px; */
+    height: 100%;
 }
 
 

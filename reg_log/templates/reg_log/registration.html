@@ -10,14 +10,18 @@
         <h1> Rejestracja </h1>
         
         <br>
-        <form action="" method="POST">
+        <form action="{% url 'registration' %}" method="POST">
             {% csrf_token %}
             
             {{ form.as_p }}
-            <input type="submit" class="btn btn-outline-success " value="Zarejestruj się"> 
 
+            <input type="submit" class="btn btn-outline-success " value="Zarejestruj się"> 
+        
+            
         </form>
+        
     </div>    
+    
     
 </body>
 {% endblock %}

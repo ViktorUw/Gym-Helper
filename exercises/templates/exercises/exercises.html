@@ -1,0 +1,26 @@
+{% extends 'exercises/ex_layout.html' %}
+
+{% block content %}
+    <!-- <h1> Ćwiczenia </h1> -->
+    <!-- <div class="tenor-gif-embed" data-postid="19074894" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/boy-running-gif-19074894">Boy Running Sticker</a>from <a href="https://tenor.com/search/boy+running-stickers">Boy Running Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+    {% for cat in category %}
+        
+        <div class="category">
+            <h2 class="category__name">{{ cat.name }}</h3>
+            <ul class="category__exercises">
+                {% for exercise in exercises %}
+                    {% if exercise.category == cat %}
+                        <div class="category__exercise">
+                            <a href="{% url 'exPage' exercise.pk %}">
+                                {{ exercise.name }}
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                
+                
+        </div>
+    {% endfor %}
+
+{% endblock %}

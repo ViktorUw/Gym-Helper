@@ -21,14 +21,14 @@ def user_registration(request):
             messages.success(request, 'You are registered successfully')
             return HttpResponseRedirect(reverse('login'))
         else:
+
             for field in form.errors:
                 field_errors = ', '.join([str(err) for err in form.errors[field]])
-                messages.error(request, f"{field}: {field_errors}")
-            
-
-                
-    
-
+                messages.error(request, f"{field} : {field_errors}")
+    else:
+        form = UserRegForm()    
+        
+        
     return render(request, 'reg_log/registration.html', {'form':form})
 
 def user_login(request):
@@ -44,6 +44,8 @@ def user_login(request):
                 return HttpResponseRedirect(reverse('mainPage'))
             else:
                 messages.error(request, 'Invalid login or password')
+        
+            
 
     else:
         form = UserLogForm()

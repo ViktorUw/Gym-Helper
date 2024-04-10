@@ -1,6 +1,5 @@
 {% extends 'main/layout.html' %}
 
-{% block title %} Strona główna {% endblock %}
 {% block content %}
 
     <div class="content">
@@ -8,6 +7,8 @@
             <div class="col-md-6">
                 <h1> Dane użytkownika </h1>
                 <br>
+
+              <!--  <p> id Usera: {{ user.id }} </p>-->
                 <p> Imię: {{ user.first_name }} </p>
                 <p> Nazwisko: {{ user.last_name }} </p>
                 <p> Email: {{ user.email }} </p>

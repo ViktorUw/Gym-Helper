@@ -1,0 +1,25 @@
+{% extends 'exercises/ex_layout.html' %}
+
+
+{% block content %}
+<div class="ex">
+    
+    <div class="ex__item ex__name">
+        <h2>{{ exercise.name }}</h2>
+        <div class="backBtn_div">
+            <a class="backBtn" href="{% url 'exercisesPage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
+        </div>
+        
+    </div>
+    <div class="ex__item ex__gif">
+        <img src="/static/exercises/jpg/pull_high_block.gif" width="800px" height="500px" alt="sss">
+
+    </div>
+    <div class="ex__item ex__description">
+        <h2>{{ exercise.description }}</h2>
+    </div>
+
+</div>
+<!-- /static/main/jpg/9.jpg -->
+<!-- <img src="exercises/jpg/{{ exercise.video }}" alt="exercise image"> -->
+{% endblock %}
