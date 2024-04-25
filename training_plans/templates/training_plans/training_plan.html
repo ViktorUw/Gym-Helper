@@ -1,0 +1,18 @@
+{% extends 'training_plans/tp_layout.html' %}
+
+{% block content %}
+    <div class="training_plans_name">
+        <p> {{plan.name}} </p>
+    </div>
+    <div class="training_plans_description">
+        <p> {{plan.description}} </p>
+    </div>
+    <div class="training_plans_exercises">
+        <p> Ćwiczenia: </p>
+        <ul>
+            {% for exercise in plan.exercises.all %}
+                <li> {{exercise.name}} </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

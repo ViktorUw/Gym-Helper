@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('reg_log.urls')),
     path('', include('main.urls')),
     path('exercises/', include('exercises.urls')),
+    path('training/', include('training_plans.urls')),
 ]

@@ -14,6 +14,5 @@ def user_info(request):
 def trainings(request):
     return render(request, 'main/trainings.html')
 
-def training_plans(request):
-    return render(request, 'main/training_plans.html')
+
     

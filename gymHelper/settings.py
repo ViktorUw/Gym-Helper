@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'training_plans',
     'exercises',
     'reg_log',
     'main',

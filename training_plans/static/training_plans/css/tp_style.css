@@ -1,0 +1,18 @@
+/* TRAINING PLANS PAGE */
+
+p{
+    color: red;
+}
+.training_plans_name{
+    background-color: rgb(0, 0, 0, .9);
+    margin: 10px;
+    font-size: 150%;
+    border-radius: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.name_txt:hover{
+    color: #a5a2a2 
+    
+}

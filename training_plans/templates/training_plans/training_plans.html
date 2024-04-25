@@ -1,0 +1,11 @@
+{% extends 'training_plans/tp_layout.html' %}
+
+{% block content %}
+    
+    {% for plan in training_plans %}
+        <div class="training_plans_name">
+            <h2 class="name_txt"> {{plan.name}} </h2>
+        </div>
+    {% endfor %}
+    
+{% endblock %}
