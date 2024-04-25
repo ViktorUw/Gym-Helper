@@ -14,7 +14,7 @@ def training_plans(request):
 def training_plan(request, training_plan_id):
     training_plan = TrainingPlans.objects.get(pk=training_plan_id)
     context = {
-        'training_plan': training_plan
+        'training_plan': training_plan,
     }
     return render(request, 'training_plans/training_plan.html', context)
     

@@ -4,7 +4,7 @@
     
     {% for plan in training_plans %}
         <div class="training_plans_name">
-            <h2 class="name_txt"> {{plan.name}} </h2>
+            <a class="name_txt" href="{% url 'trainingPlanPage' plan.pk %}"> {{plan.name}} </a>
         </div>
     {% endfor %}
     
