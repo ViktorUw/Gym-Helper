@@ -4,21 +4,30 @@
 {% block content %}
 <div class="ex">
     
-    <div class="ex__item ex__name">
-        <h2>{{ exercise.name }}</h2>
-        <div class="backBtn_div">
-            <a class="backBtn" href="{% url 'exercisesPage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
+    <div class="ex_left">
+        <div class="ex__item ex__name">
+            <div class="backBtn_div">
+                <a class="backBtn" href="{% url 'exercisesPage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
+            </div>
+            <div class="ex_name_title">
+                <h2> {{ exercise.name }}</h2>
+            </div>
         </div>
         
-    </div>
-    <div class="ex__item ex__gif">
-        <img src="/static/exercises/jpg/pull_high_block.gif" width="800px" height="500px" alt="sss">
-
-    </div>
-    <div class="ex__item ex__description">
-        <h2>{{ exercise.description }}</h2>
+        <div class="ex__item ex__description">
+            <h2>{{ exercise.description }}</h2>
+        </div>
+    
     </div>
 
+    <div class="ex_right">
+        
+      <div class="ex__item ex__gif">
+          <img src="/static/exercises/jpg/pull_high_block.gif" width="100%" height="50%" alt="sss">
+      </div>
+
+    </div>
+    
 </div>
 <!-- /static/main/jpg/9.jpg -->
 <!-- <img src="exercises/jpg/{{ exercise.video }}" alt="exercise image"> -->

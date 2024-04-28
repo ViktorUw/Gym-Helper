@@ -6,18 +6,24 @@
     {% for cat in category %}
         
         <div class="category">
-            <h2 class="category__name">{{ cat.name }}</h3>
+                        
+            <h2 class="category__name">{{ cat.name }}</h2>
+
             <ul class="category__exercises">
+                
                 {% for exercise in exercises %}
                     {% if exercise.category == cat %}
+                
                         <div class="category__exercise">
                             <a href="{% url 'exPage' exercise.pk %}">
                                 {{ exercise.name }}
                             </a>
                         </div>
+                
                     {% endif %}
                 {% endfor %}
 
+            </ul>
                 
                 
         </div>
