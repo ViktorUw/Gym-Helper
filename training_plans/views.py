@@ -1,8 +1,5 @@
 from django.shortcuts import render
 from .models import TrainingPlans, CustomPlans
-from reg_log.models import User
-
-
 
 
 def training_plans(request):
@@ -24,9 +21,9 @@ def training_plan(request, training_plan_id):
     }
     return render(request, 'training_plans/training_plan.html', context)
     
-# def custom_plans(request):
-#     custom_plans = CustomPlans.objects.all()
-#     content = {
-#         'custom_plans' : custom_plans
-#     }
-#     return render(request, 'training_plans/custom_plans.html', content)
+def custom_plan(request, custom_plan_id):
+    custom_plan = CustomPlans.objects.get(pk=custom_plan_id)
+    content = {
+        'custom_plan' : custom_plan,
+    }
+    return render(request, 'training_plans/custom_plan.html', content)
