@@ -4,4 +4,21 @@
     <div class="training_plan_name">
         <h1> {{ training_plan.name}}</h1>
     </div>
+    <div class="container-fluid">
+
+        <div class="training_plan_description">
+            <h3 class="description_header"> Opis Planu </h3>
+            <p class="description"> {{ training_plan.description }} </p>
+        </div>
+
+        <div class="training_plan_exercises">
+            <h3 class="exercises_header"> Ćwiczenia </h3>
+            
+            {% for exercise in training_plan.exercises.all %}
+                <p class="exercise"> {{exercise.name}} <p>
+            {% endfor %}
+        </div>
+
+    </div>
+
 {% endblock %}

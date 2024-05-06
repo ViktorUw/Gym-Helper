@@ -5,7 +5,19 @@
     {% for plan in training_plans %}
         <div class="training_plans_name">
             <a class="name_txt" href="{% url 'trainingPlanPage' plan.pk %}"> {{plan.name}} </a>
+            
         </div>
     {% endfor %}
     
+        <div class="custom_TP">
+            <h2 class="custom_TP_header"> Plany treningów stworzone przez ciebie </h2>
+
+            {% for plan in custom_plans %}
+                <a class="name_txt" href="#"> {{ plan.name }}</a><br/>
+
+            {% endfor %}
+
+
+        </div>
+
 {% endblock %}

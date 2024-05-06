@@ -6,31 +6,107 @@ p{
 .training_plans_name{
     background-color: rgb(0, 0, 0, .9);
     margin: 10px;
-    font-size: 150%;
+    font-size: 110%;
     border-radius: 10px;
     padding: 5px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 .name_txt{
-    margin: 5px;
+    margin-left: 15px;
     color: white;
     font-size: 150%;
     font-weight: bold;
-    text-align: center;
+    
 
 }
 .name_txt:hover{
     color: #a5a2a2 
     
 }
+.custom_TP{
+    background-color: rgb(0, 0, 0, .9);
+    margin: 10px;
+    font-size: 110%;
+    border-radius: 10px;
+    padding: 5px;
+    text-transform: uppercase;
+}
 
+.custom_TP_header{
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
 
 /* TRAINING PLAN PAGE */
 
-/* .training_plan_name{
+
+.training_plan_name{
     background-color: rgb(0, 0, 0, .9);
     margin: 10px;
     font-size: 150%;
     border-radius: 10px;
-    padding: 5px;
-} */
+    padding:5px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.container-fluid{
+    display: flex;
+    justify-content: space-between;
+}
+
+.training_plan_description{
+    width: 50%;
+    background-color: rgb(0, 0, 0, .9);
+    margin: 10px;
+    font-size: 150%;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+.description_header{
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+
+}
+.description{ 
+    color: white;
+    margin-left: 10px;
+
+}
+
+.training_plan_exercises{
+    width: 50%;
+    background-color: rgb(0, 0, 0, .9);
+    margin: 10px;
+    font-size: 150%;
+    border-radius: 10px;
+    padding: 10px;
+}
+.exercises_header{
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+
+}
+.exercise{
+    color: white;
+    margin-left: 10px;
+}
+
