@@ -1,5 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import TrainingPlans, CustomPlans
+from django.contrib import messages
+
+from .forms import CreateCustomPlanForm
 
 
 def training_plans(request):
@@ -27,3 +30,23 @@ def custom_plan(request, custom_plan_id):
         'custom_plan' : custom_plan,
     }
     return render(request, 'training_plans/custom_plan.html', content)
+
+
+def create_plan(request):
+    if request.method == 'POST':
+        form = CreateCustomPlanForm(request.POST)
+        if form.is_valid():
+            custom_plan = form.save(commit=False)
+            custom_plan.save()                     
+            custom_plan.user.set([request.user])   
+            form.save_m2m()            
+            messages.success(request, 'Plan was created sucfully!')
+
+            return redirect('/training/')
+    else:
+        form = CreateCustomPlanForm()
+
+    context = {
+        'form': form
+    }
+    return render(request, 'training_plans/create_plan.html', context)

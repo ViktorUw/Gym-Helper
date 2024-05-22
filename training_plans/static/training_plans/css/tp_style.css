@@ -1,10 +1,10 @@
 /* TRAINING PLANS PAGE */
 
-p{
+p {
     color: red;
 }
-.training_plans_name{
-    background-color: rgb(0, 0, 0, .9);
+.training_plans_name {
+    background-color: rgb(0, 0, 0, 0.9);
     margin: 10px;
     font-size: 110%;
     border-radius: 10px;
@@ -12,28 +12,24 @@ p{
     cursor: pointer;
     text-transform: uppercase;
 }
-.name_txt{
+.name_txt {
     margin-left: 15px;
     color: white;
     font-size: 150%;
     font-weight: bold;
-    
-
 }
-.name_txt:hover{
-    color: #a5a2a2 
-    
+.name_txt:hover {
+    color: #a5a2a2;
 }
-.custom_TP{
-    background-color: rgb(0, 0, 0, .9);
+.custom_TP {
+    background-color: rgb(0, 0, 0, 0.9);
     margin: 10px;
     font-size: 110%;
     border-radius: 10px;
     padding: 5px;
     text-transform: uppercase;
 }
-
-.custom_TP_header{
+.custom_TP_header {
     font-size: 200%;
     font-weight: bold;
     text-align: center;
@@ -45,68 +41,154 @@ p{
 
 /* TRAINING PLAN PAGE */
 
-
-.training_plan_name{
-    background-color: rgb(0, 0, 0, .9);
+.training_plan_name {
+    background-color: rgb(0, 0, 0, 0.9);
     margin: 10px;
     font-size: 150%;
     border-radius: 10px;
-    padding:5px;
+    padding: 5px;
     text-align: center;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.container-fluid{
+.backBtn_div {
+    width: 10%;
+    padding-top: 10px;
+    padding-left: 15px;
+    text-align: left;
+    position: absolute;
+}
+
+.container-fluid {
     display: flex;
     justify-content: space-between;
 }
 
-.training_plan_description{
+.training_plan_description {
     width: 50%;
-    background-color: rgb(0, 0, 0, .9);
+    background-color: rgb(0, 0, 0, 0.9);
+    margin: 10px;
+    font-size: 150%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.description_header {
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+.description {
+    color: white;
+    margin-left: 10px;
+}
+
+.training_plan_exercises {
+    width: 50%;
+    background-color: rgb(0, 0, 0, 0.9);
+    margin: 10px;
+    font-size: 150%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.exercises_header {
+    font-size: 200%;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid white;
+}
+
+.exercise {
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 150%;
+}
+
+.exercise-container {
+    position: relative;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.exercise_description {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+.exercise_view {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 40%;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+
+.exercise-container:hover .exercise_description {
+    opacity: 0;
+}
+
+.exercise-container:hover .exercise_view {
+    opacity: 1;
+}
+
+.exercise_view img {
+    /* width: 150px; Adjust as necessary */
+    width: 500px;
+    height: 500px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* CREATE_PLAN */
+.create_plan_body{
+    background-color: rgb(0, 0, 0, 1);
     margin: 10px;
     font-size: 150%;
     border-radius: 10px;
     padding: 10px;
     
+    
 }
-.description_header{
-    font-size: 200%;
-    font-weight: bold;
+.el_form{
+    width: 98%;
     text-align: center;
-    color: white;
     margin: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid white;
-
-}
-.description{ 
-    color: white;
-    margin-left: 10px;
-
+    border-radius: 15px;
+    
 }
 
-.training_plan_exercises{
+.cp_form{
+
+    width: 100%;
+    display: flex;
+}
+.cp_form_el{
     width: 50%;
-    background-color: rgb(0, 0, 0, .9);
     margin: 10px;
-    font-size: 150%;
-    border-radius: 10px;
-    padding: 10px;
+    justify-content: space-around;
 }
-.exercises_header{
-    font-size: 200%;
-    font-weight: bold;
-    text-align: center;
-    color: white;
-    margin: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid white;
-
-}
-.exercise{
-    color: white;
-    margin-left: 10px;
+.ex_list{
+    color:#fff
+    
 }
 
+.btn__cp{
+    
+    margin-left: 25%;
+    width: 50%;
+}

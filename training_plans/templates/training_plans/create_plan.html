@@ -1,0 +1,37 @@
+{% extends 'training_plans/tp_layout.html' %}
+{% block content %}
+
+
+<div class="create_plan_body">
+    
+    <div class="cp_form">
+        <div class="backBtn">
+            <a href="{% url 'trainingPlansPage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
+        </div>
+        <div class="cp_form_el">
+            <form action="{% url 'create_plan' %}" method="POST">
+            {% csrf_token %}
+            <div class="cp_form_name">
+                {{ form.name }}
+            </div>
+            <div class="cp_form_description">
+                    {{ form.description }}
+            </div>
+            <button class="btn__cp btn btn-outline-light " type="submit">Dodaj plan</button>
+
+        </div>
+
+        <div class="cp_form_el">
+            <div class="cp_form_exercises">
+                <p> Wybierz ćwiczenia: </p>
+                {{ form.exercises}}
+            </div>
+            
+            
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
