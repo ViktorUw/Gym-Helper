@@ -13,12 +13,21 @@
             <a href="{% url 'create_plan' %}" style="position: absolute; right: 3%; margin-top: 10px; " type="button" class="btn btn-outline-light">Stwórz własny plan </a>
             <h2 class="custom_TP_header"> Plany treningów stworzone przez ciebie </h2>
             {% for plan in custom_plans %}
-                <a class="name_txt" href="{% url 'customPlanPage' plan.pk %}"> {{ plan.name }}</a><br/>
+                <div class="custom_TP_name">
+                    <div class="custom_TP_el">
+                        <a class="name_txt" href="{% url 'customPlanPage' plan.pk %}">
+                             {{ plan.name }}
+                        </a>
+                    </div>
+                    <div class="custom_TP_el">
+                        <a class="delete_btn btn btn-outline-light" href="{% url 'delete_plan' plan.pk%}">
+                            Usuń
+                        </a>
+                    </div>
+                </div>
+                
             {% endfor %}
-            <!-- <br/>
-            <br/>
-            <br/>
-            <p> {{ user.pk }}</p> -->
+            
             
 
 

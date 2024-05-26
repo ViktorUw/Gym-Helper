@@ -1,33 +1,27 @@
-{% extends 'main/layout.html' %}
+{% extends 'main/layout.html' %} {% block content %}
 
-{% block content %}
+<div class="content">
+	<div class="row">
+		<div class="col-md-6">
+			<h1>Dane użytkownika</h1>
+			<br />
 
-    <div class="content">
-        <div class="row">
-            <div class="col-md-6">
-                <h1> Dane użytkownika </h1>
-                <br>
-
-              <!--  <p> id Usera: {{ user.id }} </p>-->
-                <p> Imię: {{ user.first_name }} </p>
-                <p> Nazwisko: {{ user.last_name }} </p>
-                <p> Email: {{ user.email }} </p>
-                <p> Wiek: {{ user.age }} </p>
-                <!-- <p> Data utworzenia: {{ user.created_at }} </p> -->
-                <!-- <p> Data modyfikacji: {{ user.modified_at }} </p> -->
-            </div>
-            <!-- <div class="col-md-6">
+			<!--  <p> id Usera: {{ user.id }} </p>-->
+			<p>Imię: {{ user.first_name }}</p>
+			<p>Nazwisko: {{ user.last_name }}</p>
+			<p>Email: {{ user.email }}</p>
+			<p>Wiek: {{ user.age }}</p>
+			<!-- <p> Data utworzenia: {{ user.created_at }} </p> -->
+			<!-- <p> Data modyfikacji: {{ user.modified_at }} </p> -->
+		</div>
+		<!-- <div class="col-md-6">
                 <h2> Dane adresowe </h2>
                 <p> Ulica: {{ user.street }} </p>
                 <p> Kod pocztowy: {{ user.postal_code }} </p>
                 <p> Miasto: {{ user.city }} </p>
                 <p> Kraj: {{ user.country }} </p>
             </div> -->
-        </div>
-    
-    
-    
-    
+	</div>
 
-
-{% endblock %}
+	{% endblock %}
+</div>

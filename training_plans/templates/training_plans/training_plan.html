@@ -1,30 +1,34 @@
-{% extends 'training_plans/tp_layout.html' %}
+{% extends 'training_plans/tp_layout.html' %} {% block content %}
+<div class="training_plan_name">
+	<div class="backBtn_div">
+		<a class="backBtn" href="{% url 'trainingPlansPage' %}"
+			><span class="material-symbols-outlined"
+				>arrow_back</span
+			>
+		</a>
+	</div>
+	<h1>{{ training_plan.name}}</h1>
+</div>
+<div class="container-fluid">
+	<div class="training_plan_exercises">
+		<h3 class="exercises_header">Ćwiczenia</h3>
 
-{% block content %}
-    <div class="training_plan_name">
-        <div class="backBtn_div">
-            <a class="backBtn" href="{% url 'trainingPlansPage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
-        </div>
-        <h1> {{ training_plan.name}}</h1>
-    </div>
-    <div class="container-fluid">
+		{% for exercise in training_plan.exercises.all %}
+		<div class="exercise-container">
+			<p class="exercise">{{ exercise.name }}</p>
+			<div class="exercise_view">
+				<img
+					src="/static/exercises/jpg/{{ exercise.video }}.gif"
+					alt="{{ exercise.name }}"
+				/>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
 
-        <div class="training_plan_exercises">
-            <h3 class="exercises_header"> Ćwiczenia </h3>
-            
-            {% for exercise in training_plan.exercises.all %}
-                <div class="exercise-container">
-                    <p class="exercise"> {{ exercise.name }} </p>
-                    <div class="exercise_view">
-                      <img src="/static/exercises/jpg/{{ exercise.video }}.gif" alt="{{ exercise.name }}">
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-
-        <div class="training_plan_description">
-            <h3 class="description_header"> Opis Planu </h3>
-            <p class="description"> {{ training_plan.description }} </p>
-        </div>
-    </div>
+	<div class="training_plan_description">
+		<h3 class="description_header">Opis Planu</h3>
+		<p class="description">{{ training_plan.description }}</p>
+	</div>
+</div>
 {% endblock %}

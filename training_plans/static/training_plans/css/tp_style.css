@@ -154,6 +154,25 @@ p {
     border-radius: 10px;
 }
 
+.custom_TP_name{
+    display: flex;
+}
+
+.custom_TP_el{
+    width: 50%;
+    justify-content: space-between;
+}
+
+.custom_TP_el:last-child{
+    text-align: right;
+    padding-right: 40px;
+}
+
+.delete_btn {
+    text-transform: none;
+    margin: 5px;    
+    
+}
 /* CREATE_PLAN */
 .create_plan_body{
     background-color: rgb(0, 0, 0, 1);

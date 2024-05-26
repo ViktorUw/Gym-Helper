@@ -50,3 +50,9 @@ def create_plan(request):
         'form': form
     }
     return render(request, 'training_plans/create_plan.html', context)
+
+def delete_plan(request, custom_plan_id):
+    custom_plan = CustomPlans.objects.get(pk=custom_plan_id)
+    custom_plan.delete()
+    messages.success(request, 'Plan was deleted sucfully!')
+    return redirect('/training/')

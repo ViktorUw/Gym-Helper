@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %} 
+{% block content %}
+{% if selected_plan == 0 %}
+    <select class="form-select form-select-lg mb-3" aria-label="Large select example" name="select_plan">
+        <option selected value="0">Wybierz plan treningowy</option>    
+        {% for plan in all_plans %}
+            
+            <option value="{{ plan.pk }}">{{ plan.name }}</option>
+
+        {% endfor %}
+    </select>
+    <button type="submit" class="btn btn-primary">Zacznij trening</button>
+
+{% else %}
+
+{% endif %}
+{% endblock %}

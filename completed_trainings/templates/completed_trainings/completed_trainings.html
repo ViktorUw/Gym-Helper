@@ -1,9 +1,16 @@
-{% extends 'main/layout.html' %}
-
+{% extends 'main/layout.html' %} 
 {% block content %}
 
-    <h1> Trainingi Zrealizowane </h1>
-    <!-- <div class="content">
+    <!-- TODO::: napisać warunek czy masz jekies juz treningi realizowane jezeli niema to wyswietl komunikat i przycisk zacznij swój pierwszy trening 
+    Jak jest to wypisać listę treningów realizowanych
+    -->
+    
+    <a href="{% url 'ct_create_trainingPage' 0 %}" class=""> Zacznij trening </a>
+    {% for ob in all_plans %}
+        <p> {{ ob.name }} </p>
+    {% endfor %}
+
+<!-- <div class="content">
         <div class="row">
             <div class="col-md-6">
                 <h1> Trainingi Zrealizowane </h1>

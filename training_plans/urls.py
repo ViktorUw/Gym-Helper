@@ -7,4 +7,5 @@ urlpatterns = [
     path('training_plan/<int:training_plan_id>/', views.training_plan, name='trainingPlanPage'),
     path('custom_plan/<int:custom_plan_id>/', views.custom_plan, name='customPlanPage'),
     path('create_plan/', views.create_plan, name='create_plan'),
+    path('delete_plan/<int:custom_plan_id>/', views.delete_plan, name='delete_plan'),
 ]
