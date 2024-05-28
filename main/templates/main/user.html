@@ -11,16 +11,17 @@
 			<p>Nazwisko: {{ user.last_name }}</p>
 			<p>Email: {{ user.email }}</p>
 			<p>Wiek: {{ user.age }}</p>
-			<!-- <p> Data utworzenia: {{ user.created_at }} </p> -->
+			<p> Waga: {{ last_weight.weight }}</p>
 			<!-- <p> Data modyfikacji: {{ user.modified_at }} </p> -->
 		</div>
-		<!-- <div class="col-md-6">
-                <h2> Dane adresowe </h2>
-                <p> Ulica: {{ user.street }} </p>
-                <p> Kod pocztowy: {{ user.postal_code }} </p>
-                <p> Miasto: {{ user.city }} </p>
-                <p> Kraj: {{ user.country }} </p>
-            </div> -->
+		<div class="col-md-6">
+			
+			<img src="data:image/jpeg;base64, {{ graph }}">
+                
+                
+                
+                
+        </div>
 	</div>
 
 	{% endblock %}

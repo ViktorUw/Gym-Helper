@@ -14,3 +14,11 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.first_name
+    
+class UserWieght(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    weight = models.FloatField()
+    date = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f'{self.user} - {self.weight} - {self.date}'

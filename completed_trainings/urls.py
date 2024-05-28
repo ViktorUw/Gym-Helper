@@ -5,7 +5,11 @@ from . import views
 
 urlpatterns = [
     path('', views.completed_trainings, name='trainingsPage'),
-    path('ct_create_training/<int:selected_plan>', views.ct_create_training, name='ct_create_trainingPage'),
+    path('chose_training_plan/', views.chose_training_plan, name='choseTrainingPlanPage'),
+    path('process_plan/', views.process_plan, name='processPlan'),
+    path('ct_create_training/', views.ct_create_training, name='ct_CreateTrainingPage'),
+    
+    
 
 ]
 
