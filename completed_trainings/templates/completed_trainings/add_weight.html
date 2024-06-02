@@ -2,17 +2,18 @@
 {% block content %}
 <div class="ct_choseTraining_form">
     <div class="backBtn_div">
-        <a class="backBtn" href="{% url 'add_weightPage' %}">
+        <a class="backBtn" href="{% url 'trainingsPage' %}">
             <span class="material-symbols-outlined">arrow_back</span>
         </a>
     </div>
-    <form method="POST" action="">
+    
+    <form method="POST" action="{% url 'add_weightPage' %}">
         {% csrf_token %}
-        {% for field in form_for_plans %}
-           <div class="ct_training_weight">
-                {{ field }}
-            </div>
-        {% endfor %}
+        <label style="color: #fff;">Zważ się przed treningiem dla śledzenia wagi</label>
+        <div class="ct_training_weight">
+            {{ form.as_p }}
+        </div>
+
         <div class="choseTraining_btn">
             <input class="btn btn-outline-light" type="submit" value="Wybierz">
         </div>

@@ -15,7 +15,7 @@ class User(AbstractUser):
     def __str__(self):
         return self.first_name
     
-class UserWieght(models.Model):
+class UserWeight(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     weight = models.FloatField()
     date = models.DateField(auto_now_add=True)

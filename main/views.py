@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from reg_log.models import UserWieght
+from reg_log.models import UserWeight
 
 import matplotlib.pyplot as plt
 from io import BytesIO
@@ -10,7 +10,7 @@ def index(request):
     return render(request, 'main/index.html')
 
 def user_info(request):
-    weight = UserWieght.objects.filter(user=request.user)
+    weight = UserWeight.objects.filter(user=request.user)
     
     weight = list(weight)
 
