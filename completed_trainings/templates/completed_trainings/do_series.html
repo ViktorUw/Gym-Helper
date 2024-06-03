@@ -1,0 +1,21 @@
+{% extends 'training_plans/tp_layout.html' %}
+{% block content %}
+<div class="ct_choseTraining_form">
+    <div class="backBtn_div">
+        <a class="backBtn" href="{% url 'add_weightPage' %}">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+    </div>
+    <form method="POST" action="">
+        {% csrf_token %}
+        {% for field in form_for_plans %}
+           <div class="ct_training_weight">
+                {{ field }}
+            </div>
+        {% endfor %}
+        <div class="choseTraining_btn">
+            <input class="btn btn-outline-light" type="submit" value="Wybierz">
+        </div>
+    </form>   
+</div>
+{% endblock %}

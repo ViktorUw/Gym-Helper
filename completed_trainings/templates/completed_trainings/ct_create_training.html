@@ -1,11 +1,62 @@
 {% extends 'training_plans/tp_layout.html' %}
 {% block content %}
-<h1>
-    {{training_name}}
-</h1>
-{% for ex in exersises %}
-    {{ ex.name }}
-{% endfor %}
+<div class="ct_header">
+    <div class="backBtn_div">
+        <a class="backBtn" href="{% url 'add_weightPage' %}">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+    </div>
+    <div class="ct_add_series" >
+        <a class="add_series_btn btn btn-outline-light" href="{% url 'do_seriesPage' %}">
+            <!-- <span class="material-symbols-outlined">add</span> -->
+            Wykonaj serię
+        </a>
+    </div>      
+    <h1>{{ training_name }}</h1>
+    <h1>{{ plan_id }}</h1>
+</div>
+
+<div class="ct_each_exercise">
+    {% for ex in exercises %}
+
+    <div class="ct_exercise_name">
+        <p>{{ ex.name }}</p>
+    </div>
+    <div class="ct_exercise_table">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+    {% endfor %}
+</div>
+
 {% endblock %}
 
 

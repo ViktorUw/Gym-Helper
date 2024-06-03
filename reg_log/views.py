@@ -11,7 +11,6 @@ from .forms import UserLogForm, UserRegForm
 def homepage(request):
     return render(request, 'reg_log/home.html')
 
-
 def user_registration(request):
     form = UserRegForm()
     if request.method == "POST":

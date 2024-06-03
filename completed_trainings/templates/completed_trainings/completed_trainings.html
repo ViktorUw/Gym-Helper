@@ -4,7 +4,15 @@
     <h1>Your Completed Trainings</h1>
 </div>    
 <div class="ct_content">
-    <a class=" btn btn-outline-light" href="{% url 'add_weightPage' %}"> Zacznij trening </a>
+    <a class="btn btn-outline-light" href="{% url 'add_weightPage' %}"> Zacznij trening </a>
 </div>
+<div class="each_training">
+    {% for training in completed_trainings %}
+    
+        <a href="{% url 'ct_create_trainingsPage' training.pk %}">{{ training.training_name }}</p>
+
+    {% endfor %}
+</div>
+
     
 {% endblock %}
