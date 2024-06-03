@@ -27,7 +27,7 @@ class Completed_Training(models.Model):
 
     
     def __str__(self):
-        return f'{self.name} - {self.date} - {self.user}'
+        return f'{self.training_name} - {self.date} - {self.user}'
     
 class CompletedExercise(models.Model):
     training = models.ForeignKey(Completed_Training, on_delete=models.CASCADE)

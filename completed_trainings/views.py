@@ -99,21 +99,18 @@ def do_series(request, plan_id):
     elif CustomPlans.objects.filter(id=plan_id).exists():
         plan = CustomPlans.objects.get(id=plan_id)
         training_id = Completed_Training.objects.get(custom_plan_id=plan_id)
-        
 
-    # return HttpResponse(training_id)
-
+    # return HttpResponse(training_id.pk)
     if request.method == 'POST':
-        # return HttpResponse(request.POST)
-        # return HttpResponse(request.POST.get(''))
+        
 
         add_exercise_form = AddExerciseForm(request.POST, plan=plan)
         if add_exercise_form.is_valid():
             exercise_instance = add_exercise_form.save(commit=False)
             exercise_instance.exercise = add_exercise_form.cleaned_data['exercise']
-            # exercise_instance.training = training  # Используем объект training
+            exercise_instance.training = training_id  # Используем объект training
             exercise_instance.save()
-            return redirect('do_series', plan_id=plan_id)
+            return redirect('do_seriesPage', plan_id=plan_id) # Потрібно буде додати перенаправлення на попередню сторінку з загруженими даними з БД
     else:
         add_exercise_form = AddExerciseForm(plan=plan)
         
