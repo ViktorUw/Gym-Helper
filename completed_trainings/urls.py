@@ -6,5 +6,5 @@ urlpatterns = [
     path('add_weight/', views.add_weight, name='add_weightPage'),
     path('chose_training_plan/', views.chose_training_plan, name='choseTrainingPlanPage'),
     path('ct_create_trainings/<int:training_id>', views.ct_create_training, name='ct_create_trainingsPage'),
-    path('do_series/<int:plan_id>', views.do_series, name='do_seriesPage'),
+    path('do_series/<int:training_id>', views.do_series, name='do_seriesPage'),
 ]

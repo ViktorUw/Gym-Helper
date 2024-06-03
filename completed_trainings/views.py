@@ -73,6 +73,7 @@ def chose_training_plan(request):
     return render(request, 'completed_trainings/chose_training_plan.html', {'form_for_plans': form_for_plans})
     
 def ct_create_training(request, training_id):
+    
     training_name = Completed_Training.objects.get(id=training_id).training_name
     plan_id = None
     if Completed_Training.objects.get(id=training_id).training_plan_id:
@@ -87,18 +88,28 @@ def ct_create_training(request, training_id):
         'training_name' : training_name,
         'plan_id' : plan_id,
         'exercises' : exercises,
+        'training_id' : training_id
     }
+    
     return render(request, 'completed_trainings/ct_create_training.html', content)
     
-def do_series(request, plan_id):
-    plan = None
+def do_series(request, training_id):
+    plan_id = None
+    if Completed_Training.objects.get(id=training_id).custom_plan_id:
+
+        plan_id = Completed_Training.objects.get(id=training_id).custom_plan_id
+    elif Completed_Training.objects.get(id=training_id).training_plan_id:
+        plan_id = Completed_Training.objects.get(id=training_id).training_plan_id
+
+    
+
     
     if TrainingPlans.objects.filter(id=plan_id).exists():
         plan = TrainingPlans.objects.get(id=plan_id)
-        training_id = Completed_Training.objects.get(training_plan_id=plan_id)
+        
     elif CustomPlans.objects.filter(id=plan_id).exists():
         plan = CustomPlans.objects.get(id=plan_id)
-        training_id = Completed_Training.objects.get(custom_plan_id=plan_id)
+        
 
     # return HttpResponse(training_id.pk)
     if request.method == 'POST':
@@ -108,9 +119,10 @@ def do_series(request, plan_id):
         if add_exercise_form.is_valid():
             exercise_instance = add_exercise_form.save(commit=False)
             exercise_instance.exercise = add_exercise_form.cleaned_data['exercise']
-            exercise_instance.training = training_id  # Используем объект training
+            exercise_instance.training = Completed_Training.objects.get(id=training_id)  # Используем объект training
+            # exercise_instance.training = training_id  # Используем объект training
             exercise_instance.save()
-            return redirect('do_seriesPage', plan_id=plan_id) # Потрібно буде додати перенаправлення на попередню сторінку з загруженими даними з БД
+            return redirect('do_seriesPage', training_id=training_id) # Потрібно буде додати перенаправлення на попередню сторінку з загруженими даними з БД
     else:
         add_exercise_form = AddExerciseForm(plan=plan)
         
