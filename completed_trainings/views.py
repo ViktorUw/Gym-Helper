@@ -84,11 +84,16 @@ def ct_create_training(request, training_id):
         plan_id = Completed_Training.objects.get(id=training_id).custom_plan_id
         exercises = CustomPlans.objects.get(id=plan_id).exercises.all()
 
+    completed_exercises = CompletedExercise.objects.filter(training_id=training_id)
+    
+    # return HttpResponse(completed_exercises[0])
     content = {
         'training_name' : training_name,
         'plan_id' : plan_id,
         'exercises' : exercises,
-        'training_id' : training_id
+        'training_id' : training_id,
+        'completed_exercises' : completed_exercises
+
     }
     
     return render(request, 'completed_trainings/ct_create_training.html', content)
@@ -122,7 +127,7 @@ def do_series(request, training_id):
             exercise_instance.training = Completed_Training.objects.get(id=training_id)  # Используем объект training
             # exercise_instance.training = training_id  # Используем объект training
             exercise_instance.save()
-            return redirect('do_seriesPage', training_id=training_id) # Потрібно буде додати перенаправлення на попередню сторінку з загруженими даними з БД
+            return redirect('ct_create_trainingsPage', training_id=training_id) # Потрібно буде додати перенаправлення на попередню сторінку з загруженими даними з БД
     else:
         add_exercise_form = AddExerciseForm(plan=plan)
         

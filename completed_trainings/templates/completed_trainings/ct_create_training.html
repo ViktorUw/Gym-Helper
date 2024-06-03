@@ -14,47 +14,45 @@
         </a>
     </div>      
     <h1>{{ training_name }}</h1>
-    <h1>{{ plan_id }}</h1>
+
 </div>
 
 <div class="ct_each_exercise">
     {% for ex in exercises %}
+      
+      <div class="ct_exercise_name">
+          <p>{{ ex.name }}</p>
+          
+      </div>
+      <div class="ct_exercise_table">
+        <table class="table table-dark">
+          
+              <thead>
+                <tr>
+                  <th scope="col"># Serii</th>
+                  <th scope="col">Ilość powtórzeń</th>
+                  <th scope="col">Waga</th>
+                </tr>
+              </thead>
 
-    <div class="ct_exercise_name">
-        <p>{{ ex.name }}</p>
-    </div>
-    <div class="ct_exercise_table">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
+              <tbody>
+                
+                {% for completed_ex in completed_exercises %}
+                
+                  {% if ex.id == completed_ex.exercise_id %}
+                  <tr>
+                      
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{completed_ex.repetitions}}</td>
+                    <td>{{completed_ex.weight}}</td>
+                  </tr>
+                  
+                  {% endif %}
+                {% endfor %}
+                
+              </tbody>
+            </table>
+      </div>
     {% endfor %}
 </div>
 
