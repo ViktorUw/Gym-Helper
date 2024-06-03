@@ -4,8 +4,10 @@ from training_plans.models import TrainingPlans, CustomPlans
 from itertools import chain
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import date
-from .forms import AdditionalWeight, TrainingPlanForm
+from .forms import AdditionalWeight, TrainingPlanForm, AddExerciseForm
 from .models import Completed_Training, CompletedExercise
+from django.shortcuts import get_object_or_404
+from exercises.models import Exercises
 
 
 # FOR COMPLETED TRAININGS
@@ -80,6 +82,7 @@ def ct_create_training(request, training_id):
     elif Completed_Training.objects.get(id=training_id).custom_plan_id:
         plan_id = Completed_Training.objects.get(id=training_id).custom_plan_id
         exercises = CustomPlans.objects.get(id=plan_id).exercises.all()
+
     content = {
         'training_name' : training_name,
         'plan_id' : plan_id,
@@ -87,22 +90,31 @@ def ct_create_training(request, training_id):
     }
     return render(request, 'completed_trainings/ct_create_training.html', content)
     
-    if TrainingPlans.objects.filter(id=training_id).exists():
-        training_plan_exercises = TrainingPlans.objects.get(id=training_id).exercises.all()
-        content = {
-            'id': training_id,
-            'training_plan': training_plan_exercises,
-        }
-        return render(request, 'completed_trainings/ct_create_training.html', content)
-    elif CustomPlans.objects.filter(id=training_id).exists():
-        custom_plans_exercises = CustomPlans.objects.get(id=training_id).exercises.all()
-        content = {
-            'id': training_id,
-            'custom_plans': custom_plans_exercises,
-        }
-        return render(request, 'completed_trainings/ct_create_training.html', content)
-    else:
-        return HttpResponse('No such training plan')
+def do_series(request, plan_id):
+    plan = None
+    
+    if TrainingPlans.objects.filter(id=plan_id).exists():
+        plan = TrainingPlans.objects.get(id=plan_id)
+        training_id = Completed_Training.objects.get(training_plan_id=plan_id)
+    elif CustomPlans.objects.filter(id=plan_id).exists():
+        plan = CustomPlans.objects.get(id=plan_id)
+        training_id = Completed_Training.objects.get(custom_plan_id=plan_id)
+        
 
-def do_series(request):
-    return render(request, 'completed_trainings/do_series.html')
+    # return HttpResponse(training_id)
+
+    if request.method == 'POST':
+        # return HttpResponse(request.POST)
+        # return HttpResponse(request.POST.get(''))
+
+        add_exercise_form = AddExerciseForm(request.POST, plan=plan)
+        if add_exercise_form.is_valid():
+            exercise_instance = add_exercise_form.save(commit=False)
+            exercise_instance.exercise = add_exercise_form.cleaned_data['exercise']
+            # exercise_instance.training = training  # Используем объект training
+            exercise_instance.save()
+            return redirect('do_series', plan_id=plan_id)
+    else:
+        add_exercise_form = AddExerciseForm(plan=plan)
+        
+    return render(request, 'completed_trainings/do_series.html', {'add_exercise_form': add_exercise_form})

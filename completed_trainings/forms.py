@@ -4,7 +4,8 @@ from training_plans.models import TrainingPlans, CustomPlans
 from itertools import chain
 
 from datetime import date
-from completed_trainings.models import Completed_Training
+from completed_trainings.models import Completed_Training, CompletedExercise
+from exercises.models import Exercises
 class AdditionalWeight(forms.ModelForm):
     
     date = date.today()
@@ -38,19 +39,30 @@ class TrainingPlanForm(forms.ModelForm):
         fields = ['training_name', 'plan']
 
 class AddExerciseForm(forms.ModelForm):
-    exercise = forms.CharField(label='', max_length=100, widget=forms.TextInput(attrs={
-        'placeholder': 'Podaj nazwę ćwiczenia'
-    }))
-    series = forms.IntegerField(label='', widget=forms.NumberInput(attrs={
-        'placeholder': 'Podaj ilość serii'
-    }))
     repetitions = forms.IntegerField(label='', widget=forms.NumberInput(attrs={
         'placeholder': 'Podaj ilość powtórzeń'
     }))
     weight = forms.FloatField(label='', widget=forms.NumberInput(attrs={
         'placeholder': 'Podaj wagę'
     }))
+    
+    # exercise = forms.ChoiceField(choices=[], label='')
+    exercise = forms.ModelChoiceField(queryset=Exercises.objects.none(), label='')
+
 
     class Meta:
-        model = Completed_Training
-        fields = ['exercise', 'series', 'repetitions', 'weight']
+        model = CompletedExercise
+        fields = ['exercise', 'repetitions', 'weight']
+
+    def __init__(self, *args, **kwargs):
+        plan = kwargs.pop('plan', None)
+        super(AddExerciseForm, self).__init__(*args, **kwargs)
+        if plan:
+            # self.fields['exercise'].choices = [(exercise, exercise.name) for exercise in plan.exercises.all()]
+
+            self.fields['exercise'].queryset = plan.exercises.all()
+            
+
+
+
+    

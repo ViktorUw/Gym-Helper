@@ -6,15 +6,21 @@
             <span class="material-symbols-outlined">arrow_back</span>
         </a>
     </div>
+    {% if plan %}
+        <p>Plan is true</p>
+    {% endif %}
+    
     <form method="POST" action="">
         {% csrf_token %}
-        {% for field in form_for_plans %}
+        {% for field in add_exercise_form %}
+
            <div class="ct_training_weight">
-                {{ field }}
+                {{ field}}
             </div>
+            
         {% endfor %}
         <div class="choseTraining_btn">
-            <input class="btn btn-outline-light" type="submit" value="Wybierz">
+            <input class="btn btn-outline-light" type="submit" value="Zapisz">
         </div>
     </form>   
 </div>

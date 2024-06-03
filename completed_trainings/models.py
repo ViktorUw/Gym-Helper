@@ -31,8 +31,7 @@ class Completed_Training(models.Model):
     
 class CompletedExercise(models.Model):
     training = models.ForeignKey(Completed_Training, on_delete=models.CASCADE)
-    exercise = models.ForeignKey(Exercises, on_delete=models.CASCADE)
+    exercise = models.ForeignKey(Exercises, on_delete=models.CASCADE, blank=True, null=True)
     series = models.IntegerField()
     repetitions = models.IntegerField()
     weight = models.FloatField()
-
