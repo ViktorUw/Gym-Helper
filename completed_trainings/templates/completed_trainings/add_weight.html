@@ -14,7 +14,7 @@
 <div class="panel">
 	<h1>Ile dziś ważysz?</h1>
 	<p class="page-head__lead">Waga przed treningiem trafi na wykres w Twoim profilu.</p>
-	<form class="form" method="POST" action="{% url 'add_weightPage' %}">
+	<form class="form" method="POST" novalidate action="{% url 'add_weightPage' %} ">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<button class="btn btn--primary btn--block" type="submit">Dalej</button>

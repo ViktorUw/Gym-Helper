@@ -12,7 +12,7 @@
 <div class="panel">
 	<h1>Nowa seria</h1>
 	<p class="page-head__lead">Wybierz ćwiczenie i wpisz, ile zrobiłeś.</p>
-	<form class="form" method="POST" action="">
+	<form class="form" method="POST" action="" novalidate>
 		{% csrf_token %}
 		{{ add_exercise_form.as_p }}
 		<button class="btn btn--primary btn--block" type="submit">Zapisz serię</button>

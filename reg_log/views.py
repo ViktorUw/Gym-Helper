@@ -1,15 +1,16 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from .forms import UserLogForm, UserRegForm
 
 
-
 def homepage(request):
-    return render(request, 'reg_log/home.html')
+    return render(request, "reg_log/home.html")
+
 
 def user_registration(request):
     form = UserRegForm()
@@ -17,44 +18,44 @@ def user_registration(request):
         form = UserRegForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'You are registered successfully')
-            return HttpResponseRedirect(reverse('login'))
+            messages.success(request, "You are registered successfully")
+            return HttpResponseRedirect(reverse("login"))
         else:
-
             for field in form.errors:
-                field_errors = ', '.join([str(err) for err in form.errors[field]])
+                field_errors = ", ".join([str(err) for err in form.errors[field]])
                 messages.error(request, f"{field} : {field_errors}")
     else:
-        form = UserRegForm()    
-        
-        
-    return render(request, 'reg_log/registration.html', {'form':form})
+        form = UserRegForm()
+
+    return render(request, "reg_log/registration.html", {"form": form})
+
 
 def user_login(request):
+    next_url = request.POST.get("next") or request.GET.get("next", "")
     if request.method == "POST":
         form = UserLogForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, username=cd['email'],
-                                password = cd['password1'])
+            user = authenticate(request, username=cd["email"], password=cd["password1"])
             if user is not None:
                 login(request, user)
-                messages.success(request, 'You are logged in successfully')
-                return HttpResponseRedirect(reverse('mainPage'))
+                messages.success(request, "You are logged in successfully")
+                if url_has_allowed_host_and_scheme(
+                    next_url, allowed_hosts={request.get_host()}
+                ):
+                    return HttpResponseRedirect(next_url)
+                return HttpResponseRedirect(reverse("mainPage"))
+
             else:
-                messages.error(request, 'Invalid login or password')
-        
-            
+                messages.error(request, "Invalid login or password")
 
     else:
         form = UserLogForm()
 
-
-
-    return render(request, 'reg_log/login.html', {'form':form})
+    return render(request, "reg_log/login.html", {"form": form, "next": next_url})
 
 
 def user_logout(request):
     logout(request)
-    messages.success(request,'You are logged out successfully')
-    return HttpResponseRedirect(reverse('login'))
+    messages.success(request, "You are logged out successfully")
+    return HttpResponseRedirect(reverse("login"))

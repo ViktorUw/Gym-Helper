@@ -13,9 +13,9 @@ class AdditionalWeight(forms.ModelForm):
     date = date.today()
     weight = forms.FloatField(
         label="",
-        widget=forms.NumberInput(
-            attrs={"step": "0.01", "name": "weight", "placeholder": "Podaj wagę"}
-        ),
+        min_value=20,
+        max_value=300,
+        widget=forms.NumberInput(attrs={"step": "0.01", "placeholder": "Podaj wagę"}),
     )
 
     class Meta:
@@ -53,10 +53,15 @@ class TrainingPlanForm(forms.ModelForm):
 class AddExerciseForm(forms.ModelForm):
     repetitions = forms.IntegerField(
         label="",
+        min_value=1,
+        max_value=100,
         widget=forms.NumberInput(attrs={"placeholder": "Podaj ilość powtórzeń"}),
     )
     weight = forms.FloatField(
-        label="", widget=forms.NumberInput(attrs={"placeholder": "Podaj wagę"})
+        label="",
+        min_value=0,
+        max_value=500,
+        widget=forms.NumberInput(attrs={"placeholder": "Podaj wagę"}),
     )
 
     # exercise = forms.ChoiceField(choices=[], label='')
