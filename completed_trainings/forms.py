@@ -1,4 +1,5 @@
 from datetime import date
+from typing import cast
 
 from django import forms
 
@@ -36,10 +37,11 @@ class TrainingPlanForm(forms.ModelForm):
 
         if user:
             # Prefixes keep ready ("tp") and custom ("cp") plans apart: their ids can repeat
-            self.fields["plan"].choices = [
-                (f"tp-{plan.id}", plan.name) for plan in TrainingPlans.objects.all()
+            # cast(): self.fields is typed as plain Field, so tell Pylance the real type
+            cast(forms.ChoiceField, self.fields["plan"]).choices = [
+                (f"tp-{plan.pk}", plan.name) for plan in TrainingPlans.objects.all()
             ] + [
-                (f"cp-{plan.id}", plan.name)
+                (f"cp-{plan.pk}", plan.name)
                 for plan in CustomPlans.objects.filter(user=user)
             ]
 
@@ -68,4 +70,4 @@ class AddExerciseForm(forms.ModelForm):
         exercises = kwargs.pop("exercises", None)
         super().__init__(*args, **kwargs)
         if exercises is not None:
-            self.fields["exercise"].queryset = exercises
+            cast(forms.ModelChoiceField, self.fields["exercise"]).queryset = exercises
