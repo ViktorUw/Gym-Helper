@@ -1,27 +1,21 @@
-{% extends 'training_plans/tp_layout.html' %}
-{% block content %}
-<div class="ct_choseTraining_form">
-    <div class="backBtn_div">
-        <a class="backBtn" href="{% url 'add_weightPage' %}">
-            <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-    </div>
-    {% if plan %}
-        <p>Plan is true</p>
-    {% endif %}
-    
-    <form method="POST" action="">
-        {% csrf_token %}
-        {% for field in add_exercise_form %}
+{% extends 'main/layout.html' %}
 
-           <div class="ct_training_weight">
-                {{ field}}
-            </div>
-            
-        {% endfor %}
-        <div class="choseTraining_btn">
-            <input class="btn btn-outline-light" type="submit" value="Zapisz">
-        </div>
-    </form>   
+{% block title %}Nowa seria – {% endblock %}
+{% block page_class %}page--narrow{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'ct_create_trainingsPage' request.resolver_match.kwargs.training_id %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	Trening
+</a>
+
+<div class="panel">
+	<h1>Nowa seria</h1>
+	<p class="page-head__lead">Wybierz ćwiczenie i wpisz, ile zrobiłeś.</p>
+	<form class="form" method="POST" action="">
+		{% csrf_token %}
+		{{ add_exercise_form.as_p }}
+		<button class="btn btn--primary btn--block" type="submit">Zapisz serię</button>
+	</form>
 </div>
 {% endblock %}

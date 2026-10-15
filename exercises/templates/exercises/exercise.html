@@ -1,35 +1,23 @@
-{% extends 'exercises/ex_layout.html' %}
+{% extends 'main/layout.html' %}
 
+{% block title %}{{ exercise.name }} – {% endblock %}
 
 {% block content %}
-<div class="ex">
-    
-    <div class="ex_left">
-        <div class="ex__item ex__name">
-            <div class="backBtn_div">
-                <a class="backBtn" href="{% url 'exercisesPage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
-            </div>
-            <div class="ex_name_title">
-                <h3> {{ exercise.name }}</h3>
-            </div>
-        </div>
-        
-        <div class="ex__item ex__description">
-            <h3>{{ exercise.description }}</h3>
-        </div>
-    
-    </div>
+<a class="back" href="{% url 'exercisesPage' %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	Ćwiczenia
+</a>
 
-    <div class="ex_right">
-        
-      <div class="ex__item ex__gif">
-
-          <img src="/static/exercises/jpg/{{ exercise.video }}.gif" width="100%" height="50%" alt="sss">
-      </div>
-
-    </div>
-    
-</div>
-<!-- /static/main/jpg/9.jpg -->
-<!-- <img src="exercises/jpg/{{ exercise.video }}" alt="exercise image"> -->
+<article class="exercise plate-{{ exercise.category.plate }}">
+	<div>
+		<span class="chip"><span class="plate-dot" aria-hidden="true"></span>{{ exercise.category.name }}</span>
+		<h1 class="exercise__title">{{ exercise.name }}</h1>
+		<p class="exercise__desc">{{ exercise.description|default:"Brak opisu." }}</p>
+	</div>
+	{% if exercise.video %}
+	<figure class="media">
+		<img src="/static/exercises/jpg/{{ exercise.video }}.gif" alt="Technika: {{ exercise.name }}" />
+	</figure>
+	{% endif %}
+</article>
 {% endblock %}

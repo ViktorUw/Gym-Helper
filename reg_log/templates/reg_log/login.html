@@ -1,33 +1,17 @@
 {% extends 'reg_log/layout.html' %}
 
-
-{% block title %} Logowanie {% endblock %}
-
+{% block title %}Logowanie – Gym Helper{% endblock %}
+{% block body_class %}auth--login{% endblock %}
 
 {% block content %}
-{% include 'reg_log/messages.html' %}
-<body class="bodyLog">
-    <div class="welcome wLog">
-        <h1> Logowanie </h1>
-        <br>
-        <div class="backBtn">
-            <a href="{% url 'homepage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
-        </div>
-        <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-            {{ form.as_p}}
-            
-            
-            
-            
-            
-            <input type="submit" class="btn btn-outline-success " value="Zaloguj"> 
-            
-
-        </form>
-
-
-    </div>       
-</body>
+<div class="auth-card">
+	<h1>Logowanie</h1>
+	<p class="auth-card__lead">Zaloguj się adresem email, którego użyłeś przy rejestracji.</p>
+	<form class="form" action="{% url 'login' %}" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="btn btn--primary btn--block">Zaloguj się</button>
+	</form>
+	<p class="auth-card__alt">Nie masz konta? <a href="{% url 'registration' %}">Załóż konto</a></p>
+</div>
 {% endblock %}
-

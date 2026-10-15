@@ -1,83 +1,50 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{% block title %}{% endblock %}Gym Helper</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-		/>
-		<link rel="stylesheet" href="{% static 'main/css/style.css' %}" />
-
-		<link
-			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+			href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap"
 		/>
 		<link
 			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0"
 		/>
-
-		<title>Gym Helper</title>
+		<link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=2" />
 	</head>
-	<body class="bodyMain">
-		<div class="navbar">
-			<a href="{% url 'mainPage' %}">
-				<div class="nav_section">
-					<div class="nav_ico">
-						<span class="material-symbols-outlined">home</span>
-					</div>
-					<!-- <div class="nav_text">Home</div> -->
+	<body>
+		{% with path=request.path %}
+		<header class="site-header">
+			<div class="site-header__inner">
+				<a class="wordmark" href="{% url 'mainPage' %}">
+					<span class="wordmark__bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+					Gym Helper
+				</a>
+				<nav class="nav" aria-label="Główna nawigacja">
+					<a href="{% url 'trainingsPage' %}" {% if '/completed_trainings/' in path %}aria-current="page"{% endif %}>Treningi</a>
+					<a href="{% url 'trainingPlansPage' %}" {% if '/training/' in path %}aria-current="page"{% endif %}>Plany</a>
+					<a href="{% url 'exercisesPage' %}" {% if '/exercises/' in path %}aria-current="page"{% endif %}>Ćwiczenia</a>
+				</nav>
+				<div class="account">
+					<a class="account__user" href="{% url 'userPage' %}" {% if path == '/user/' %}aria-current="page"{% endif %}>
+						<span class="material-symbols-outlined" aria-hidden="true">person</span>
+						<span class="account__name">{{ user.first_name }}</span>
+					</a>
+					<a class="account__logout" href="{% url 'logout' %}">Wyloguj</a>
 				</div>
-			</a>
-			<a href="{% url 'trainingsPage' %}">
-				<div class="nav_section">
-					<div class="nav_ico">
-						<span class="material-symbols-outlined">sports_gymnastics</span>
-					</div>
-					<div class="nav_text">Treningi Realizowane</div>
-				</div>
-			</a>
-			<a href="{% url 'trainingPlansPage' %}">
-				<div class="nav_section">
-					<div class="nav_ico">
-						<span class="material-symbols-outlined">sports_gymnastics</span>
-					</div>
-					<div class="nav_text">Plany Treningów</div>
-				</div>
-			</a>
-			<a href="{% url 'exercisesPage' %}">
-				<div class="nav_section">
-					<div class="nav_ico">
-						<span class="material-symbols-outlined">fitness_center</span>
-					</div>
-					<div class="nav_text">Cwiczenia</div>
-				</div>
-			</a>
-			<!-- <a href="#">
-            <div class="nav_section">
-                    <div class="nav_ico"><span class="material-symbols-outlined">weight</span> </div>
-                    <div class="nav_text">Waga</div>
-            </div>
-        </a> -->
+			</div>
+		</header>
+		{% endwith %}
 
-			<a href="{% url 'userPage' %}">
-				<div class="nav_section">
-					<div class="nav_ico">
-						<span class="material-symbols-outlined">person</span>
-					</div>
-					<div class="nav_text">
-						<div class="text_welcome">Witaj {{ user.first_name }} |</div>
-						<div class="text_logout">
-							<a class="logout_btn" href="{% url 'logout' %}"> Wyloguj</a>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div class="content">
-			{% include 'reg_log/messages.html' %} {% block content %} {% endblock %}
-		</div>
+		{% include 'reg_log/messages.html' %}
+
+		<main class="page {% block page_class %}{% endblock %}">
+			{% block content %}{% endblock %}
+		</main>
 	</body>
 </html>

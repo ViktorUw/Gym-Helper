@@ -8,6 +8,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def plate(self):
+        """Colour slot 1-6 used by the templates (CSS classes plate-1 ... plate-6)."""
+        return (self.pk - 1) % 6 + 1
+
 
 class Exercises(models.Model):
     name = models.CharField(max_length=100, blank=True, default='')

@@ -1,26 +1,13 @@
-{% extends 'reg_log/layout.html' %}
-
-
-{% block title %} Gym Helper {% endblock %}
-
-{% block content %} 
-
-<body class="bodyHome">
-
-    <div class="welcome">
-        <div class="welcome_textDiv"> 
-            <p class="welcome_text">Witam, Klubowiczu w mojej aplikacji webowej</p>
-            <p class="welcome_text">Miło mi że jesteś z nami</p>    
-        </div>
-        <div class="welcome_regLogDiv">
-            <a href="{% url 'registration' %}"> <button type="button" class="btn btn-outline-success">Zarejestruj się</button> </a>
-            <p class="welcome_text "> Może już masz konto | <a href="{%url 'login' %}" class="link-secondary">Zaloguj się</a></p>
-            
-        </div>
-    </div>    
-</body>
-
-
-
-
+{% extends 'reg_log/layout.html' %} {% block body_class %}auth--home{% endblock %} {% block content
+%}
+<section class="hero">
+  <h1>Zapisuj każdą serię.</h1>
+  <p>
+    Wybierz plan albo ułóż własny, notuj powtórzenia i ciężar, a postęp wagi zobaczysz na wykresie.
+  </p>
+  <div class="hero__actions">
+    <a class="btn btn--primary" href="{% url 'registration' %}">Załóż konto</a>
+    <a class="btn btn--ghost" href="{% url 'login' %}">Zaloguj się</a>
+  </div>
+</section>
 {% endblock %}

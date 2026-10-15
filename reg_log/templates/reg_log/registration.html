@@ -1,27 +1,17 @@
 {% extends 'reg_log/layout.html' %}
 
-{% block content %}
-<body class="bodyReg">  
-    {% include 'reg_log/messages.html' %}
-    <div class="welcome wReg">
-        <div class="backBtn">
-            <a href="{% url 'homepage' %}"><span class="material-symbols-outlined">arrow_back</span></a>
-        </div>
-        <h1> Rejestracja </h1>
-        
-        <br>
-        <form action="{% url 'registration' %}" method="POST">
-            {% csrf_token %}
-            
-            {{ form.as_p }}
+{% block title %}Rejestracja – Gym Helper{% endblock %}
+{% block body_class %}auth--register{% endblock %}
 
-            <input type="submit" class="btn btn-outline-success " value="Zarejestruj się"> 
-        
-            
-        </form>
-        
-    </div>    
-    
-    
-</body>
+{% block content %}
+<div class="auth-card">
+	<h1>Rejestracja</h1>
+	<p class="auth-card__lead">Konto jest potrzebne, żeby zapisywać treningi i wagę.</p>
+	<form class="form" action="{% url 'registration' %}" method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="btn btn--primary btn--block">Załóż konto</button>
+	</form>
+	<p class="auth-card__alt">Masz już konto? <a href="{% url 'login' %}">Zaloguj się</a></p>
+</div>
 {% endblock %}

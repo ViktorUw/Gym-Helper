@@ -1,0 +1,41 @@
+{# Shared by training_plan.html and custom_plan.html; expects `plan`. #}
+<a class="back" href="{% url 'trainingPlansPage' %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	Plany
+</a>
+
+<div class="page-head">
+	<h1>{{ plan.name }}</h1>
+	<a class="btn btn--primary" href="{% url 'add_weightPage' %}">Zacznij trening</a>
+</div>
+
+<div class="plan">
+	<section>
+		<h2 class="section__title">Ćwiczenia</h2>
+		<ol class="plan__exercises">
+			{% for exercise in plan.exercises.all %}
+			<li class="plate-{{ exercise.category.plate }}">
+				<details>
+					<summary>
+						<span class="plate-dot" aria-hidden="true"></span>
+						<span class="grow">{{ exercise.name }}</span>
+						<span class="toggle"><span class="when-closed">Pokaż technikę</span><span class="when-open">Ukryj</span></span>
+					</summary>
+					{% if exercise.video %}
+					<figure class="media">
+						<img loading="lazy" src="/static/exercises/jpg/{{ exercise.video }}.gif" alt="Technika: {{ exercise.name }}" />
+					</figure>
+					{% endif %}
+				</details>
+			</li>
+			{% empty %}
+			<li class="plan__empty">Ten plan nie ma jeszcze ćwiczeń.</li>
+			{% endfor %}
+		</ol>
+	</section>
+
+	<aside class="panel plan__about">
+		<h2>O planie</h2>
+		<p class="muted">{{ plan.description|default:"Brak opisu." }}</p>
+	</aside>
+</div>

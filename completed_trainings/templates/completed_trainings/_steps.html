@@ -1,0 +1,5 @@
+{# Progress of the "start training" flow; expects `step` (1 or 2). #}
+<ol class="steps">
+	<li {% if step == 1 %}aria-current="step"{% else %}class="done"{% endif %}>1. Waga</li>
+	<li {% if step == 2 %}aria-current="step"{% endif %}>2. Plan</li>
+</ol>

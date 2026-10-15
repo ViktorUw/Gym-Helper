@@ -1,62 +1,48 @@
-{% extends 'training_plans/tp_layout.html' %}
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ training_name }} – {% endblock %}
+
 {% block content %}
-<div class="ct_header">
-    <div class="backBtn_div">
-        <a class="backBtn" href="{% url 'add_weightPage' %}">
-            <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-    </div>
-    <div class="ct_add_series" >
-        <a class="add_series_btn btn btn-outline-light" href="{% url 'do_seriesPage' training_id %}">
-            <!-- <span class="material-symbols-outlined">add</span> -->
-            Wykonaj serię
-            
-        </a>
-    </div>      
-    <h1>{{ training_name }}</h1>
+<a class="back" href="{% url 'trainingsPage' %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	Treningi
+</a>
 
+<div class="page-head">
+	<h1>{{ training_name }}</h1>
+	<a class="btn btn--primary" href="{% url 'do_seriesPage' training_id %}">
+		<span class="material-symbols-outlined" aria-hidden="true">add</span>
+		Zapisz serię
+	</a>
 </div>
 
-<div class="ct_each_exercise">
-    {% for ex in exercises %}
-      
-      <div class="ct_exercise_name">
-          <p>{{ ex.name }}</p>
-          
-      </div>
-      <div class="ct_exercise_table">
-        <table class="table table-dark">
-          
-              <thead>
-                <tr>
-                  <th scope="col"># Serii</th>
-                  <th scope="col">Ilość powtórzeń</th>
-                  <th scope="col">Waga</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                
-                {% for completed_ex in completed_exercises %}
-                
-                  {% if ex.id == completed_ex.exercise_id %}
-                  <tr>
-                      
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td>{{completed_ex.repetitions}}</td>
-                    <td>{{completed_ex.weight}}</td>
-                  </tr>
-                  
-                  {% endif %}
-                {% endfor %}
-                
-              </tbody>
-            </table>
-      </div>
-    {% endfor %}
+{% for ex, sets in exercise_sets %}
+<section class="log plate-{{ ex.category.plate }}">
+	<h2><span class="plate-dot" aria-hidden="true"></span>{{ ex.name }}</h2>
+	<table class="sets">
+		<thead>
+			<tr>
+				<th scope="col">Seria</th>
+				<th scope="col">Powtórzenia</th>
+				<th scope="col">Ciężar</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for completed_ex in sets %}
+			<tr>
+				<th scope="row">{{ forloop.counter }}</th>
+				<td>{{ completed_ex.repetitions }}</td>
+				<td>{{ completed_ex.weight }} kg</td>
+			</tr>
+			{% empty %}
+			<tr class="sets__none"><td colspan="3">Brak serii</td></tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</section>
+{% empty %}
+<div class="empty">
+	<p>Plan tego treningu nie ma ćwiczeń.</p>
 </div>
-
+{% endfor %}
 {% endblock %}
-
-
-<!-- FOR CREATING TRANING PLAN ДОРОБИТИ ТРЕБА -->

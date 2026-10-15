@@ -1,36 +1,65 @@
-{% extends 'training_plans/tp_layout.html' %}
+{% extends 'main/layout.html' %}
+
+{% block title %}Plany – {% endblock %}
 
 {% block content %}
-    
-    {% for plan in training_plans %}
-        <div class="training_plans_name">
-            <a class="name_txt" href="{% url 'trainingPlanPage' plan.pk %}"> {{plan.name}} </a>
-            
-        </div>
-    {% endfor %}
-    
-        <div class="custom_TP">
-            <a href="{% url 'create_plan' %}" style="position: absolute; right: 3%; margin-top: 10px; " type="button" class="btn btn-outline-light">Stwórz własny plan </a>
-            <h2 class="custom_TP_header"> Plany treningów stworzone przez ciebie </h2>
-            {% for plan in custom_plans %}
-                <div class="custom_TP_name">
-                    <div class="custom_TP_el">
-                        <a class="name_txt" href="{% url 'customPlanPage' plan.pk %}">
-                             {{ plan.name }}
-                        </a>
-                    </div>
-                    <div class="custom_TP_el">
-                        <a class="delete_btn btn btn-outline-light" href="{% url 'delete_plan' plan.pk%}">
-                            Usuń
-                        </a>
-                    </div>
-                </div>
-                
-            {% endfor %}
-            
-            
+<div class="page-head">
+	<div>
+		<h1>Plany treningowe</h1>
+		<p class="page-head__lead">Weź gotowy plan albo złóż własny z ćwiczeń, które lubisz.</p>
+	</div>
+	<a class="btn btn--primary" href="{% url 'create_plan' %}">
+		<span class="material-symbols-outlined" aria-hidden="true">add</span>
+		Stwórz własny plan
+	</a>
+</div>
 
+<section class="section">
+	<h2 class="section__title">Gotowe plany</h2>
+	<div class="plan-grid">
+		{% for plan in training_plans %}
+		<a class="plan-card" href="{% url 'trainingPlanPage' plan.pk %}">
+			<h3>{{ plan.name }}</h3>
+			{% if plan.description %}<p class="plan-card__desc">{{ plan.description }}</p>{% endif %}
+			<div class="plan-card__plates" aria-label="{{ plan.exercises.count }} ćwiczeń">
+				{% for ex in plan.exercises.all %}<span class="plate-dot plate-{{ ex.category.plate }}" title="{{ ex.name }}"></span>{% endfor %}
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+</section>
 
-        </div>
+<section class="section">
+	<h2 class="section__title">Twoje plany</h2>
+	{% if custom_plans %}
+	<ul class="rows">
+		{% for plan in custom_plans %}
+		<li>
+			<a class="rows__main" href="{% url 'customPlanPage' plan.pk %}">{{ plan.name }}</a>
+			<span class="rows__meta">{{ plan.exercises.count }} ćw.</span>
+			
+			<a class="btn btn--danger" href="{% url 'delete_plan' plan.pk %}" onclick="return confirm('Usunąć plan „{{ plan.name|escapejs }}”?')">
+				<span class="material-symbols-outlined" aria-hidden="true">delete</span>
+				Usuń
+			</a>
 
+			<form method="post" action="{% url 'delete_plan' plan.pk %}"
+				onsubmit="return confirm('Usunąć plan „{{ plan.name|escapejs }}”?')">
+				{% csrf_token %}
+				<button type="submit" class="btn btn--danger">
+ 					<span class="material-symbols-outlined" aria-hidden="true">delete</span>
+                	Usuń
+				</button>
+
+			</form>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<div class="empty">
+		<p>Nie masz jeszcze własnych planów. Wybierz ćwiczenia, a plan pojawi się tutaj.</p>
+		<a class="btn btn--ghost" href="{% url 'create_plan' %}">Stwórz własny plan</a>
+	</div>
+	{% endif %}
+</section>
 {% endblock %}

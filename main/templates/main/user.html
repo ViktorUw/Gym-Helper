@@ -1,28 +1,33 @@
-{% extends 'main/layout.html' %} {% block content %}
+{% extends 'main/layout.html' %}
 
-<div class="content">
-	<div class="row">
-		<div class="col-md-6">
-			<h1>Dane użytkownika</h1>
-			<br />
+{% block title %}Profil – {% endblock %}
 
-			<!--  <p> id Usera: {{ user.id }} </p>-->
-			<p>Imię: {{ user.first_name }}</p>
-			<p>Nazwisko: {{ user.last_name }}</p>
-			<p>Email: {{ user.email }}</p>
-			<p>Wiek: {{ user.age }}</p>
-			<p> Waga: {{ last_weight.weight }}</p>
-			<!-- <p> Data modyfikacji: {{ user.modified_at }} </p> -->
-		</div>
-		<div class="col-md-6">
-			
-			<img src="data:image/jpeg;base64, {{ graph }}">
-                
-                
-                
-                
-        </div>
-	</div>
-
-	{% endblock %}
+{% block content %}
+<div class="page-head">
+	<h1>{{ user.first_name }} {{ user.last_name }}</h1>
 </div>
+
+<div class="profile">
+	<section class="panel">
+		<dl class="facts">
+			<div><dt>Email</dt><dd>{{ user.email }}</dd></div>
+			<div><dt>Wiek</dt><dd>{{ user.age|default:"–" }}</dd></div>
+			<div><dt>Pomiarów wagi</dt><dd>{{ weight|length }}</dd></div>
+		</dl>
+	</section>
+
+	<section class="panel">
+		<h2>Waga</h2>
+		{% if last_weight %}
+		<p class="weight-now">{{ last_weight.weight }}<small>kg</small></p>
+		<p class="muted">Ostatni pomiar: {{ last_weight.date|date:"d.m.Y" }}</p>
+		<img class="chart" src="data:image/png;base64,{{ graph }}" alt="Wykres zmian wagi w czasie" />
+		{% else %}
+		<div class="empty">
+			<p>Nie masz jeszcze żadnych pomiarów. Waga zapisuje się na początku każdego treningu.</p>
+			<a class="btn btn--primary" href="{% url 'add_weightPage' %}">Zacznij trening</a>
+		</div>
+		{% endif %}
+	</section>
+</div>
+{% endblock %}

@@ -1,32 +1,34 @@
-{% extends 'exercises/ex_layout.html' %}
+{% extends 'main/layout.html' %}
+
+{% block title %}Ćwiczenia – {% endblock %}
 
 {% block content %}
-    <!-- <h1> Ćwiczenia </h1> -->
-    <!-- <div class="tenor-gif-embed" data-postid="19074894" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/boy-running-gif-19074894">Boy Running Sticker</a>from <a href="https://tenor.com/search/boy+running-stickers">Boy Running Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
-    {% for cat in category %}
-        
-        <div class="category">
-                        
-            <h2 class="category__name">{{ cat.name }}</h2>
+<div class="page-head">
+	<div>
+		<h1>Ćwiczenia</h1>
+		<p class="page-head__lead">Każda partia mięśni ma swój kolor, jak talerze na sztandze. Ten sam kolor zobaczysz w planach.</p>
+	</div>
+</div>
 
-            <ul class="category__exercises">
-                
-                {% for exercise in exercises %}
-                    {% if exercise.category == cat %}
-                
-                        <div class="category__exercise">
-                            <a href="{% url 'exPage' exercise.pk %}">
-                                {{ exercise.name }}
-                            </a>
-                        </div>
-                
-                    {% endif %}
-                {% endfor %}
-
-            </ul>
-                
-                
-        </div>
-    {% endfor %}
-
+{% for cat in category %}
+{% with items=cat.exercises_set.all %}
+<section class="category plate-{{ cat.plate }}" aria-labelledby="cat-{{ cat.pk }}">
+	<div class="category__plate" aria-hidden="true"></div>
+	<div class="category__head">
+		<h2 id="cat-{{ cat.pk }}">{{ cat.name }}</h2>
+		<span class="category__count">{{ items|length }}</span>
+	</div>
+	<div class="tiles">
+		{% for exercise in items %}
+		<a class="tile" href="{% url 'exPage' exercise.pk %}">
+			{{ exercise.name }}
+			<span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+		</a>
+		{% empty %}
+		<p class="muted">Brak ćwiczeń w tej kategorii.</p>
+		{% endfor %}
+	</div>
+</section>
+{% endwith %}
+{% endfor %}
 {% endblock %}
