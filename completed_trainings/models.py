@@ -9,8 +9,9 @@ class Completed_Training(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     training_name = models.CharField(max_length=100)
     date = models.DateField(auto_now_add=True)
-    training_plan = models.ForeignKey(TrainingPlans, on_delete=models.CASCADE, blank=True, null=True)
-    custom_plan = models.ForeignKey(CustomPlans, on_delete=models.CASCADE, blank=True, null=True)
+    # SET_NULL: deleting a plan must not erase the training history done with it
+    training_plan = models.ForeignKey(TrainingPlans, on_delete=models.SET_NULL, blank=True, null=True)
+    custom_plan = models.ForeignKey(CustomPlans, on_delete=models.SET_NULL, blank=True, null=True)
 
     
     def __str__(self):

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, render
 
 
 from .models import Exercises, Category
@@ -6,6 +7,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 
+@login_required
 def exercises(request):
     category = Category.objects.all()
     exercises = Exercises.objects.all()
@@ -16,8 +18,9 @@ def exercises(request):
     
     return render(request, 'exercises/exercises.html', content)
 
+@login_required
 def exercise(request, exercise_id):
-    exercise = Exercises.objects.get(pk=exercise_id)
+    exercise = get_object_or_404(Exercises, pk=exercise_id)
     # description = exercise.description
     
 

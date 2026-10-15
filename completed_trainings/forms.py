@@ -1,5 +1,4 @@
 from datetime import date
-from itertools import chain
 
 from django import forms
 
@@ -36,10 +35,13 @@ class TrainingPlanForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
 
         if user:
-            training_plans = TrainingPlans.objects.all()
-            custom_plans = CustomPlans.objects.filter(user=user)
-            all_plans = list(chain(training_plans, custom_plans))
-            self.fields["plan"].choices = [(plan.id, plan.name) for plan in all_plans]
+            # Prefixes keep ready ("tp") and custom ("cp") plans apart: their ids can repeat
+            self.fields["plan"].choices = [
+                (f"tp-{plan.id}", plan.name) for plan in TrainingPlans.objects.all()
+            ] + [
+                (f"cp-{plan.id}", plan.name)
+                for plan in CustomPlans.objects.filter(user=user)
+            ]
 
     class Meta:
         model = Completed_Training
@@ -63,9 +65,7 @@ class AddExerciseForm(forms.ModelForm):
         fields = ["exercise", "repetitions", "weight"]
 
     def __init__(self, *args, **kwargs):
-        plan = kwargs.pop("plan", None)
+        exercises = kwargs.pop("exercises", None)
         super().__init__(*args, **kwargs)
-        if plan:
-            # self.fields['exercise'].choices = [(exercise, exercise.name) for exercise in plan.exercises.all()]
-
-            self.fields["exercise"].queryset = plan.exercises.all()
+        if exercises is not None:
+            self.fields["exercise"].queryset = exercises

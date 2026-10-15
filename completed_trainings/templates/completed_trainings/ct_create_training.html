@@ -16,6 +16,10 @@
 	</a>
 </div>
 
+{% if not plan_id %}
+<p class="notice">Plan tego treningu został usunięty. Zapisane serie zostają, a nową serię możesz dodać do dowolnego ćwiczenia.</p>
+{% endif %}
+
 {% for ex, sets in exercise_sets %}
 <section class="log plate-{{ ex.category.plate }}">
 	<h2><span class="plate-dot" aria-hidden="true"></span>{{ ex.name }}</h2>
@@ -42,7 +46,7 @@
 </section>
 {% empty %}
 <div class="empty">
-	<p>Plan tego treningu nie ma ćwiczeń.</p>
+	<p>{% if plan_id %}Plan tego treningu nie ma ćwiczeń.{% else %}Brak zapisanych serii.{% endif %}</p>
 </div>
 {% endfor %}
 {% endblock %}

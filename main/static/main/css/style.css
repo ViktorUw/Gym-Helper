@@ -653,6 +653,12 @@ img { max-width: 100%; }
 
 /* ---------- Workout log ---------- */
 
+.notice {
+    color: var(--dust);
+    margin-bottom: 24px;
+    max-width: 70ch;
+}
+
 .log + .log { margin-top: 28px; }
 
 .log h2 {

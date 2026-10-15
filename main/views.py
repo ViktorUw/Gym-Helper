@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from reg_log.models import UserWeight
 
@@ -8,9 +9,11 @@ from io import BytesIO
 import base64
 
 
+@login_required
 def index(request):
     return render(request, 'main/index.html')
 
+@login_required
 def user_info(request):
     weight = UserWeight.objects.filter(user=request.user)
     
