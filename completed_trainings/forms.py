@@ -20,7 +20,7 @@ class AdditionalWeight(forms.ModelForm):
 
     class Meta:
         model = UserWeight
-        fields = "weight"
+        fields = ["weight"]
 
 
 class TrainingPlanForm(forms.ModelForm):
@@ -43,7 +43,7 @@ class TrainingPlanForm(forms.ModelForm):
 
     class Meta:
         model = Completed_Training
-        fields = "training_name", "plan"
+        fields = ["training_name", "plan"]
 
 
 class AddExerciseForm(forms.ModelForm):
@@ -60,7 +60,7 @@ class AddExerciseForm(forms.ModelForm):
 
     class Meta:
         model = CompletedExercise
-        fields = "exercise", "repetitions", "weight"
+        fields = ["exercise", "repetitions", "weight"]
 
     def __init__(self, *args, **kwargs):
         plan = kwargs.pop("plan", None)

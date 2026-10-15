@@ -1,13 +1,14 @@
-{% extends 'reg_log/layout.html' %} {% block body_class %}auth--home{% endblock %} {% block content
-%}
+{% extends 'reg_log/layout.html' %}
+
+{% block body_class %}auth--home{% endblock %}
+
+{% block content %}
 <section class="hero">
-  <h1>Zapisuj każdą serię.</h1>
-  <p>
-    Wybierz plan albo ułóż własny, notuj powtórzenia i ciężar, a postęp wagi zobaczysz na wykresie.
-  </p>
-  <div class="hero__actions">
-    <a class="btn btn--primary" href="{% url 'registration' %}">Załóż konto</a>
-    <a class="btn btn--ghost" href="{% url 'login' %}">Zaloguj się</a>
-  </div>
+	<h1>Zapisuj każdą serię.</h1>
+	<p>Wybierz plan albo ułóż własny, notuj powtórzenia i ciężar, a postęp wagi zobaczysz na wykresie.</p>
+	<div class="hero__actions">
+		<a class="btn btn--primary" href="{% url 'registration' %}">Załóż konto</a>
+		<a class="btn btn--ghost" href="{% url 'login' %}">Zaloguj się</a>
+	</div>
 </section>
 {% endblock %}

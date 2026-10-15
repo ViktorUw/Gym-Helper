@@ -37,20 +37,13 @@
 		<li>
 			<a class="rows__main" href="{% url 'customPlanPage' plan.pk %}">{{ plan.name }}</a>
 			<span class="rows__meta">{{ plan.exercises.count }} ćw.</span>
-			
-			<a class="btn btn--danger" href="{% url 'delete_plan' plan.pk %}" onclick="return confirm('Usunąć plan „{{ plan.name|escapejs }}”?')">
-				<span class="material-symbols-outlined" aria-hidden="true">delete</span>
-				Usuń
-			</a>
-
-			<form method="post" action="{% url 'delete_plan' plan.pk %}"
-				onsubmit="return confirm('Usunąć plan „{{ plan.name|escapejs }}”?')">
+			<form method="POST" action="{% url 'delete_plan' plan.pk %}"
+			      onsubmit="return confirm('Usunąć plan „{{ plan.name|escapejs }}”?')">
 				{% csrf_token %}
 				<button type="submit" class="btn btn--danger">
- 					<span class="material-symbols-outlined" aria-hidden="true">delete</span>
-                	Usuń
+					<span class="material-symbols-outlined" aria-hidden="true">delete</span>
+					Usuń
 				</button>
-
 			</form>
 		</li>
 		{% endfor %}

@@ -20,7 +20,7 @@
 	<li>
 		<a class="rows__main" href="{% url 'ct_create_trainingsPage' training.pk %}">{{ training.training_name }}</a>
 		<span class="rows__meta">{{ training.date|date:"d.m.Y" }}</span>
-		<form method="POST", action="{%url 'delete_training' training.pk %}"  onsubmit="return confirm('Usunąć trening „{{ training.training_name|escapejs }}” razem z seriami?')">
+		<form method="POST" action="{% url 'delete_training' training.pk %}" onsubmit="return confirm('Usunąć trening „{{ training.training_name|escapejs }}” razem z seriami?')">
 			{% csrf_token %}
 			<button type="submit" class="btn btn--danger">
 				<span class="material-symbols-outlined" aria-hidden="true">delete</span>
