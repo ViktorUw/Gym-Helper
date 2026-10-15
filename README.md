@@ -14,7 +14,7 @@ A web application for gym training built with **Django**. Users can browse exerc
 
 ## Tech stack
 
-- **Python 3**, **Django 5.1**
+- **Python 3**, **Django 5.2**
 - **SQLite**
 - **matplotlib** for the weight progress chart
 - HTML templates and static files (CSS, images)
@@ -39,18 +39,21 @@ completed_trainings/   # Starting workouts, logging sets, history
    ```
 2. Create a virtual environment and install dependencies:
    ```bash
-   python -m venv venv
-   source venv/bin/activate      # Windows: venv\Scripts\activate
+   python -m venv .venv
+   source .venv/bin/activate     # Windows: .venv\Scripts\activate
    pip install -r requirements.txt
    ```
-3. Apply migrations and start the server:
+3. Create the database, load sample exercises, categories and training plans, and create an admin account:
    ```bash
    python manage.py migrate
+   python manage.py loaddata fixtures/initial_data.json
+   python manage.py createsuperuser
+   ```
+4. Start the server:
+   ```bash
    python manage.py runserver
    ```
-4. Open http://127.0.0.1:8000/ in your browser.
-
-The repository includes a `db.sqlite3` file with sample exercises and plans. To use the admin panel, create an account with `python manage.py createsuperuser` and go to `/admin/`.
+5. Open http://127.0.0.1:8000/ in your browser. The admin panel is at `/admin/` (log in with the email you used in `createsuperuser`).
 
 A project presentation (in Polish) is included: `GymHeplerPrez.pdf`.
 

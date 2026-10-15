@@ -1,3 +1,4 @@
 *.py[cod]
 
 .venv/
+db.sqlite3

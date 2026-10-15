@@ -1,0 +1,278 @@
+[
+{
+  "model": "exercises.category",
+  "pk": 7,
+  "fields": {
+    "name": "Plecy",
+    "description": ""
+  }
+},
+{
+  "model": "exercises.category",
+  "pk": 8,
+  "fields": {
+    "name": "Pierś",
+    "description": null
+  }
+},
+{
+  "model": "exercises.category",
+  "pk": 9,
+  "fields": {
+    "name": "Ramiona",
+    "description": null
+  }
+},
+{
+  "model": "exercises.category",
+  "pk": 10,
+  "fields": {
+    "name": "Triceps",
+    "description": null
+  }
+},
+{
+  "model": "exercises.category",
+  "pk": 11,
+  "fields": {
+    "name": "Biceps",
+    "description": null
+  }
+},
+{
+  "model": "exercises.category",
+  "pk": 12,
+  "fields": {
+    "name": "Nogi",
+    "description": null
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 12,
+  "fields": {
+    "name": "Сiągnięcie górnego bloku",
+    "description": "Ustaw się w odpowiedniej pozycji siedzącej, zachowując prostą plecy i stopy płasko na podłodze.",
+    "category": 7,
+    "video": "pull_high_block"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 13,
+  "fields": {
+    "name": "Uginanie ramion w maszynie na klatkę piersiową",
+    "description": "Usiądź na maszynie z odpowiednio ustawionym obciążeniem i regulowanymi poduszkami, tak aby były przylegające do klatki piersiowej.",
+    "category": 8,
+    "video": "uginanie_na_klate"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 14,
+  "fields": {
+    "name": "Wyciskanie na barki siedząc",
+    "description": "Usiądź na ławce z podporami na sztangę na wysokości ramion.\nUmieść sztangę na podporach na wysokości ramion.\nPołóż się na plecach, złap sztangę szerokim uchwytem i ostrożnie zdejmij ją z podpór.\nProstując ramiona, podnieś sztangę do góry, trzymając ją nad głową.\nPowoli opuść sztangę, zginając łokcie, aż dotknie ramion.\nPodnieś sztangę do góry, prostując ramiona, i powtórz to ćwiczenie przez określoną liczbę powtórzeń, dbając o prawidłową formę i kontrolę nad ruchem.",
+    "category": 9,
+    "video": "wyciskanie_na_barki"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 15,
+  "fields": {
+    "name": "Prostowanie na triceps",
+    "description": "Usiądź na ławeczce, trzymając sztangę nad głową ramionami na szerokości barków.\nZegnij łokcie, opuszczając sztangę za głowę, zachowując pionowe ułożenie przedramion.\nWyprostuj łokcie, unosząc sztangę z powrotem do pozycji wyjściowej, przeciwstawiając się sile grawitacji.\nKontroluj ruch i unikaj całkowitego zablokowania łokci w górnej pozycji.\nPowtórz ćwiczenie określoną liczbę razy, utrzymując dobrą formę i kontrolując oddech.\n\n\n\n\n\n",
+    "category": 10,
+    "video": "prostowanie_na_triceps"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 16,
+  "fields": {
+    "name": "Podciąganie na biceps",
+    "description": "Stój prosto, trzymając sztangę lub hantle na wyciągniętych rękach, opuszczając je wzdłuż ciała.\nZegnij łokcie, unosząc sztangę lub hantle ku górze, skupiając się na skurczu mięśni bicepsów.\nPowoli opuść sztangę lub hantle, kontrolując ruch, aby uniknąć nadmiernego rozciągania mięśni.\nPowtórz określoną liczbę razy, utrzymując stabilność ciała i kontrolując oddech.",
+    "category": 11,
+    "video": "podciaganie_na_biceps"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 17,
+  "fields": {
+    "name": "Wyciskanie nóg",
+    "description": "Połóż się na plecach na ławce do wyciskania nóg, upewniając się, że ramiona i plecy są dobrze przylegające do poduszki.\nUmieść stopy na platformie szeroko na szerokość ramion, zgięte kolana pod kątem około 90 stopni.\nZwolnij blokadę i ostrożnie odpychaj platformę stopami, wypychając ją do przodu.\nWyprostuj nogi, rozszerzając kolana, a następnie powoli je zgiń, opuszczając platformę z powrotem do pozycji wyjściowej.\nPowtarzaj ćwiczenie przez określoną liczbę powtórzeń, utrzymując kontrolę i właściwą formę.",
+    "category": 12,
+    "video": "wyciskanie_nogami"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 18,
+  "fields": {
+    "name": "Wyciskanie na górnej części klatki piersiowej",
+    "description": "Połóż się na ławeczce, trzymając sztangę lub hantle nad klatką piersiową, ręce na szerokości barków.\nWykonaj wdech i opuść sztangę lub hantle powoli ku górze, aż dotkną one górnej części klatki piersiowej.\nWykonaj wydech i wyciśnij sztangę lub hantle w górę, prostując ramiona, ale nie zamykaj ich całkowicie na górze, aby utrzymać napięcie w mięśniach.\nPowtórz ruch przez określoną liczbę powtórzeń, dbając o kontrolę nad ciężarem i zachowując stabilność ciała.",
+    "category": 8,
+    "video": "wyciskanie_na_góre_klaty"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 19,
+  "fields": {
+    "name": "Wiosłowanie na maszynie na plecy",
+    "description": "Usiądź na maszynie do wiosłowania, upewniając się, że plecy są proste, a nogi są stabilnie umieszczone.\nChwytaj za uchwyty lub trzymaj rękojeści, nachylając się w pasie i trzymając ręce przed sobą.\nNapnij mięśnie pleców, przyciągnij ręce do tyłu, opuszczając ramiona w dół i prostując łopatki.\nPowoli wróć do pozycji wyjściowej, kontrolując ruch i utrzymując napięcie w mięśniach pleców.\nPowtórz określoną liczbę powtórzeń, dbając o prawidłową formę i kontrolę nad ruchem.",
+    "category": 7,
+    "video": "wioslowani_na_plecy"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 20,
+  "fields": {
+    "name": "Unoszenie hantli na boki",
+    "description": "Stań prosto, trzymając hantle wzdłuż ciała, dłonie skierowane ku dołowi.\nWykonaj wdech i unieś hantle na boki, trzymając lekko zgięte łokcie i utrzymując stabilność tułowia.\nUnosząc hantle, skoncentruj się na napięciu mięśni bocznych deltojdów.\nWykonaj wydech i powoli opuść hantle do pozycji wyjściowej, kontrolując ruch.\nPowtórz określoną liczbę powtórzeń, dbając o kontrolę nad ciężarem i zachowując stabilność ciała.",
+    "category": 9,
+    "video": "unoszenie_hantli_na_boki"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 21,
+  "fields": {
+    "name": "Podnoszenie hantli na biceps siedząc",
+    "description": "Usiądź na ławeczce z hantlami w rękach, ramiona wzdłuż tułowia, dłonie zwrócone do ciała.\nWykonaj wdech i podnieś hantle ku górze, zginając łokcie i skupiając się na skurczu mięśni bicepsów.\nUnosząc hantle, unikaj ruchu ramion, skupiając się na pracy wyłącznie bicepsów.\nWykonaj wydech i powoli opuść hantle do pozycji wyjściowej, kontrolując ruch.\nPowtórz określoną liczbę powtórzeń, dbając o kontrolę nad ciężarem i zachowując stabilność ciała.",
+    "category": 11,
+    "video": "podnoszenie_hantli_na_biceps"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 22,
+  "fields": {
+    "name": "Pompowanie od ławy na tricepsa",
+    "description": "Połóż się na płaskiej ławce na brzuchu, z rękami umieszczonymi na podłodze nieco szerzej niż szerokość ramion. Wypchnij się z rąk, prostując ramiona, ale nie blokując ich całkowicie na górze, aby utrzymać napięcie w tricepsie. Opuszczaj ciało, zginając łokcie, aż twoja klatka piersiowa zbliży się do podłogi. Wróć do pozycji wyjściowej, naciskając dłonie w podłogę, aby unieść ciało do góry. Powtórz określoną liczbę powtórzeń, utrzymując kontrolę nad ruchem i zachowując stabilność ciała.",
+    "category": 10,
+    "video": "pompowanie_od_lawy"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 24,
+  "fields": {
+    "name": "Rozpętki łytek siedząc",
+    "description": "Usiądź na ławeczce ze sztangielkami na kolanach lub specjalnym sprzęcie do rozpiętek łydek. Powoli opuść stopy, kontrolując ruch, aż wrócą do pozycji wyjściowej. Powtórz określoną liczbę powtórzeń, dbając o kontrolę nad ciężarem i zachowując stabilność ciała.",
+    "category": 12,
+    "video": "rozpetki_lytek"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 25,
+  "fields": {
+    "name": "Wyciskanie na maszynie siedząc",
+    "description": "Usiądź wygodnie na maszynie, tak aby poduszki dobrze podtrzymywały plecy i ramiona.\nUstaw rękojeści na poziomie klatki piersiowej i chwytaj za nie, trzymając je zwrócone do ciebie.\nWykonaj wydech i wypchnij rękojeści do przodu, napinając mięśnie klatki piersiowej.\nWdychaj, wracając powoli z rękojeściami do pozycji wyjściowej, kontrolując ruch.\nPowtarzaj ćwiczenie przez określoną liczbę powtórzeń, utrzymując stabilność i kontrolując ruch.",
+    "category": 8,
+    "video": "wyciskanie_na_maszynie_siedzac"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 26,
+  "fields": {
+    "name": "Wiosłowanie w opadzie",
+    "description": "Stój prosto, trzymając sztangę na wyciągniętych rękach, opuszczając ją przed sobą.\nZegnij w pasie, lekko zginając kolana i utrzymując prostą plecy.\nPociągnij sztangę do góry, unosząc łokcie i napinając mięśnie pleców.\nOpuszczaj sztangę powoli, kontrolując ruch, aby wróciła do pozycji wyjściowej.\nPowtórz określoną liczbę powtórzeń, utrzymując stabilność ciała i kontrolując oddech.",
+    "category": 7,
+    "video": "wioslowanie_w_opadzie"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 27,
+  "fields": {
+    "name": "Wyciskanie sztangi w Smith machine",
+    "description": "Ustaw sztangę na odpowiedniej wysokości na maszynie Smitha i dodaj obciążenie.\nStój prosto pod sztangą, stopy szerokość barków, trzymając sztangę na poziomie barków.\nWdychaj i wypychaj sztangę do góry, prostując ramiona, ale nie blokując ich całkowicie na górze.\nPowoli opuszczaj sztangę, kontrolując ruch, aby wróciła do pozycji wyjściowej.\nPowtórz określoną liczbę powtórzeń, dbając o kontrolę nad ciężarem i zachowując stabilność ciała.",
+    "category": 9,
+    "video": "wyciskanie_w_smit_maszynie"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 28,
+  "fields": {
+    "name": "Wyciskanie wąskim chwytem",
+    "description": "Usiądź na ławeczce lub połóż się na skamieniu, trzymając sztangę wąskim chwytem (tj. ręce blisko siebie).\nPodnieś sztangę do góry, trzymając ją nad klatką piersiową, z łokciami skierowanymi do przodu.\nPowoli opuść sztangę w dół, kontrolując ruch, aż dotknie ona klatki piersiowej.\nNastępnie wyprostuj ramiona, unosząc sztangę do góry, ale nie blokując ich całkowicie.\nPowtórz określoną liczbę powtórzeń, zachowując kontrolę nad ciężarem i stabilność ciała.",
+    "category": 10,
+    "video": "wyciskanie_waskim_uchwytem"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 29,
+  "fields": {
+    "name": "Podnoszenie hantli młotkowato",
+    "description": "Stań prosto, trzymając hantle wzdłuż ciała, dłonie zwrócone ku sobie.\nWykonaj wdech i unieś hantle ku górze, przytrzymując je wzdłuż ciała, zgięte łokcie.\nSkoncentruj się na napięciu mięśni ramion, unikając ruchu nadgarstków.\nWykonaj wydech i powoli opuść hantle, wracając do pozycji wyjściowej.\nPowtórz określoną liczbę powtórzeń, dbając o kontrolę nad ciężarem i zachowując stabilność ciała.",
+    "category": 11,
+    "video": "podnoszenie_hantli_mlotkiem"
+  }
+},
+{
+  "model": "exercises.exercises",
+  "pk": 30,
+  "fields": {
+    "name": "Przysiady na maszynie hack",
+    "description": "Ustaw ławeczkę lub platformę na odpowiedniej wysokości na maszynie hack.\nStań prosto na platformie, barki i plecy przylegające do podparcia.\nUmieść stopy na platformie na szerokość barków lub nieco szerzej.\nWykonaj wdech i powoli opuść się w dół, zginając kolana, aż uda znajdą się w pozycji równoległej do podłogi lub nieco niżej.\nWykonaj wydech i wypchnij się w górę, prostując nogi, ale nie zamykaj ich całkowicie na górze.\nPowtórz określoną liczbę powtórzeń, dbając o kontrolę nad ruchem i zachowując stabilność ciała.",
+    "category": 12,
+    "video": "przysiady_na_maszynie"
+  }
+},
+{
+  "model": "training_plans.trainingplans",
+  "pk": 4,
+  "fields": {
+    "name": "FB Poniedziałek",
+    "description": "Full Body training dla mięśni całego ciała w poniedzałek",
+    "exercises": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ]
+  }
+},
+{
+  "model": "training_plans.trainingplans",
+  "pk": 5,
+  "fields": {
+    "name": "FB Sroda",
+    "description": "Full Body training dla mięśni całego ciała w środę",
+    "exercises": [
+      18,
+      19,
+      20,
+      21,
+      22,
+      24
+    ]
+  }
+},
+{
+  "model": "training_plans.trainingplans",
+  "pk": 6,
+  "fields": {
+    "name": "FB Piątek",
+    "description": "Full Body training dla mięśni całego ciała w piątek",
+    "exercises": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ]
+  }
+}
+]
