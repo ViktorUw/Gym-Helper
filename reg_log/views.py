@@ -18,12 +18,8 @@ def user_registration(request):
         form = UserRegForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "You are registered successfully")
+            messages.success(request, "Konto zostało założone. Możesz się zalogować.")
             return HttpResponseRedirect(reverse("login"))
-        else:
-            for field in form.errors:
-                field_errors = ", ".join([str(err) for err in form.errors[field]])
-                messages.error(request, f"{field} : {field_errors}")
     else:
         form = UserRegForm()
 
@@ -39,7 +35,7 @@ def user_login(request):
             user = authenticate(request, username=cd["email"], password=cd["password1"])
             if user is not None:
                 login(request, user)
-                messages.success(request, "You are logged in successfully")
+                messages.success(request, "Zalogowano")
                 if url_has_allowed_host_and_scheme(
                     next_url, allowed_hosts={request.get_host()}
                 ):
@@ -47,7 +43,7 @@ def user_login(request):
                 return HttpResponseRedirect(reverse("mainPage"))
 
             else:
-                messages.error(request, "Invalid login or password")
+                messages.error(request, "Nieprawidłowy email lub hasło")
 
     else:
         form = UserLogForm()
@@ -57,5 +53,5 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    messages.success(request, "You are logged out successfully")
+    messages.success(request, "Wylogowano")
     return HttpResponseRedirect(reverse("login"))

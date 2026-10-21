@@ -7,7 +7,7 @@
 <div class="auth-card">
 	<h1>Logowanie</h1>
 	<p class="auth-card__lead">Zaloguj się adresem email, którego użyłeś przy rejestracji.</p>
-	<form class="form" action="{% url 'login' %}" method="POST">
+	<form class="form" action="{% url 'login' %}" novalidate method="POST">
 		{% csrf_token %}
 		<input type="hidden" name="next" value="{{ next }}">
 		{{ form.as_p }}

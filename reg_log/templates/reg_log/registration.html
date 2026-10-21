@@ -7,7 +7,7 @@
 <div class="auth-card">
 	<h1>Rejestracja</h1>
 	<p class="auth-card__lead">Konto jest potrzebne, żeby zapisywać treningi i wagę.</p>
-	<form class="form" action="{% url 'registration' %}" method="POST">
+	<form class="form" novalidate action="{% url 'registration' %}" method="POST">
 		{% csrf_token %}
 		{{ form.as_p }}
 		<button type="submit" class="btn btn--primary btn--block">Załóż konto</button>

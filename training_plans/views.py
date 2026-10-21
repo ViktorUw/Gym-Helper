@@ -47,7 +47,7 @@ def create_plan(request):
             custom_plan.save()
             custom_plan.user.set([request.user])
             form.save_m2m()
-            messages.success(request, "Plan was created sucfully!")
+            messages.success(request, "Plan został utworzony!")
 
             return redirect("/training/")
     else:
