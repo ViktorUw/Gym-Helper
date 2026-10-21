@@ -1,2 +1,3 @@
 # Django templates: Prettier treats {% %} tags as plain text and breaks them across lines
 **/templates/**
+*.md

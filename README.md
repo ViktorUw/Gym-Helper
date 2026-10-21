@@ -43,18 +43,30 @@ completed_trainings/   # Starting workouts, logging sets, history
    source .venv/bin/activate     # Windows: .venv\Scripts\activate
    pip install -r requirements.txt
    ```
-3. Create the database, load sample exercises, categories and training plans, and create an admin account:
+3. Create a `.env` file with your settings. Copy the example file:
+   ```bash
+   cp .env.example .env          # Windows: copy .env.example .env
+   ```
+   Generate a secret key:
+   ```bash
+   python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+   ```
+   Open `.env` and replace the `SECRET_KEY` value with the generated key (keep the single quotes):
+   ```
+   SECRET_KEY='your-generated-key'
+   ```
+4. Create the database, load sample exercises, categories and training plans, and create an admin account:
    ```bash
    python manage.py migrate
    python manage.py loaddata fixtures/initial_data.json
    python manage.py createsuperuser
    ```
-4. Start the server:
+5. Start the server:
    ```bash
    python manage.py runserver
    ```
-5. Open http://127.0.0.1:8000/ in your browser. The admin panel is at `/admin/` (log in with the email you used in `createsuperuser`).
+6. Open http://127.0.0.1:8000/ in your browser. The admin panel is at `/admin/` (log in with the email you used in `createsuperuser`).
 
 A project presentation (in Polish) is included: `GymHeplerPrez.pdf`.
 
-> The interface is in Polish. This is a study project and runs with `DEBUG = True`; it is not configured for production.
+> The interface is in Polish. This is a study project: `.env.example` sets `DEBUG=True` for local development, and the project is not configured for production.
