@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.http import url_has_allowed_host_and_scheme
+from django.views.decorators.http import require_POST
 
 from .forms import UserLogForm, UserRegForm
 
@@ -51,6 +52,7 @@ def user_login(request):
     return render(request, "reg_log/login.html", {"form": form, "next": next_url})
 
 
+@require_POST
 def user_logout(request):
     logout(request)
     messages.success(request, "Wylogowano")

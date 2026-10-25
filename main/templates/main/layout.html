@@ -15,7 +15,7 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..500,0..1,0"
 		/>
-		<link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=3" />
+		<link rel="stylesheet" href="{% static 'main/css/style.css' %}?v=4" />
 	</head>
 	<body>
 		{% with path=request.path %}
@@ -35,7 +35,10 @@
 						<span class="material-symbols-outlined" aria-hidden="true">person</span>
 						<span class="account__name">{{ user.first_name }}</span>
 					</a>
-					<a class="account__logout" href="{% url 'logout' %}">Wyloguj</a>
+					<form method="POST" action="{% url 'logout' %}">
+						{% csrf_token %}
+						<button type="submit" class="account__logout">Wyloguj</button>
+					</form>
 				</div>
 			</div>
 		</header>
