@@ -1,0 +1,21 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Edycja danych – {% endblock %}
+{% block page_class %}page--narrow{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'userPage' %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	Profil
+</a>
+
+<div class="panel">
+	<h1>Edycja danych</h1>
+	<p class="page-head__lead">Po zmianie adresu email logujesz się nowym adresem.</p>
+	<form class="form form--labelled" method="POST" action="" novalidate>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn--primary btn--block" type="submit">Zapisz zmiany</button>
+	</form>
+</div>
+{% endblock %}

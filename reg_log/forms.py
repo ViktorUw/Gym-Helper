@@ -58,3 +58,14 @@ class UserLogForm(forms.Form):
             attrs={"class": "form-control", "placeholder": "Hasło"}
         ),
     )
+
+
+class AccountForm(forms.ModelForm):
+    """Edit name, email and age on the profile page."""
+
+    age = forms.IntegerField(label="Wiek", min_value=10, max_value=120, required=False)
+
+    class Meta:
+        model = User
+        fields = ["first_name", "last_name", "email", "age"]
+        labels = {"first_name": "Imię", "last_name": "Nazwisko", "email": "Email"}

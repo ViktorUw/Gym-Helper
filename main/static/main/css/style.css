@@ -272,6 +272,16 @@ img {
   padding: 24px;
 }
 
+/* Panel title with a button on the right */
+.panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
 .empty {
   border: 1px dashed var(--steel);
   border-radius: var(--radius);
@@ -399,6 +409,18 @@ img {
 .form__label {
   font-weight: 500;
   margin-bottom: -6px;
+}
+
+/* Forms that show a label above each field (account editing) */
+.form--labelled label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--dust);
+  font-size: 0.95rem;
+}
+
+.weights__title {
+  margin: 28px 0 12px;
 }
 
 /* Steps of the "start training" flow. */
@@ -624,7 +646,7 @@ img {
   border-top: 1px solid var(--steel);
 }
 
-.rows a.rows__main {
+.rows .rows__main {
   font-weight: 600;
   flex: 1;
   padding: 4px 0;

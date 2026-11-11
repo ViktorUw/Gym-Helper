@@ -1,0 +1,24 @@
+{% extends 'main/layout.html' %}
+
+{# Used to add a measurement, and to edit one when `measurement` is given. #}
+{% block title %}{% if measurement %}Edycja pomiaru{% else %}Nowy pomiar{% endif %} – {% endblock %}
+{% block page_class %}page--narrow{% endblock %}
+
+{% block content %}
+<a class="back" href="{% url 'userPage' %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	Profil
+</a>
+
+<div class="panel">
+	<h1>{% if measurement %}Edycja pomiaru{% else %}Nowy pomiar{% endif %}</h1>
+	<p class="page-head__lead">
+		{% if measurement %}Pomiar z dnia {{ measurement.date|date:"d.m.Y" }}.{% else %}Pomiar zapisze się z dzisiejszą datą.{% endif %}
+	</p>
+	<form class="form" method="POST" action="" novalidate>
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button class="btn btn--primary btn--block" type="submit">{% if measurement %}Zapisz zmiany{% else %}Dodaj pomiar{% endif %}</button>
+	</form>
+</div>
+{% endblock %}
