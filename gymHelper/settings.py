@@ -47,12 +47,24 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
+    "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 AUTH_USER_MODEL = "reg_log.User"
 
 # Where @login_required sends visitors who are not logged in
 LOGIN_URL = "login"
+
+REST_FRAMEWORK = {
+    # Every API endpoint needs a logged-in user unless a view says otherwise
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    # Browser: the website's login session. Apps: "Authorization: Token <token>" header
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ],
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

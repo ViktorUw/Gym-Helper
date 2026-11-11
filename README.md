@@ -11,10 +11,12 @@ A web application for gym training built with **Django**. Users can browse exerc
 - **Training history** of completed workouts
 - **Body weight tracking**: add measurements and see your progress on a chart (matplotlib)
 - Django admin panel for managing exercises, categories and plans
+- **REST API** (Django REST Framework) for exercises, plans, trainings and sets
 
 ## Tech stack
 
 - **Python 3**, **Django 5.2**
+- **Django REST Framework** for the API
 - **SQLite**
 - **matplotlib** for the weight progress chart
 - HTML templates and static files (CSS, images)
@@ -66,6 +68,28 @@ completed_trainings/   # Starting workouts, logging sets, history
    python manage.py runserver
    ```
 6. Open http://127.0.0.1:8000/ in your browser. The admin panel is at `/admin/` (log in with the email you used in `createsuperuser`).
+
+## REST API
+
+All endpoints are under `/api/` and need a logged-in user. In the browser, log in on the website and open http://127.0.0.1:8000/api/ to browse the API. Apps log in with a token:
+
+```bash
+curl -X POST http://127.0.0.1:8000/api/token/ -d "username=you@example.com" -d "password=your-password"
+# {"token": "9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b"}
+curl http://127.0.0.1:8000/api/trainings/ -H "Authorization: Token 9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b"
+```
+
+The `username` field takes the account's email.
+
+| Endpoint | Methods | Description |
+|---|---|---|
+| `/api/exercises/` | GET | Exercises with their category |
+| `/api/plans/` | GET | Ready-made plans with exercise ids |
+| `/api/custom-plans/` | GET | Your own plans |
+| `/api/trainings/` | GET, POST, PUT, PATCH, DELETE | Your trainings with sets and a summary; create one with `training_name` and `training_plan` or `custom_plan` |
+| `/api/sets/` | GET, POST, PUT, PATCH, DELETE | Your sets (`training`, `exercise`, `repetitions`, `weight`); filter with `?training=<id>` |
+
+Each list endpoint also has a detail URL, for example `/api/trainings/<id>/`. Other users' data returns 404.
 
 A project presentation (in Polish) is included: `GymHeplerPrez.pdf`.
 

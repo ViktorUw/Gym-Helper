@@ -16,11 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 
+from completed_trainings.api import SetViewSet, TrainingViewSet
+from exercises.api import ExerciseViewSet
+from training_plans.api import CustomPlanViewSet, TrainingPlanViewSet
 
+# REST API; the router creates the URLs, e.g. /api/trainings/ and /api/trainings/<id>/
+router = routers.DefaultRouter()
+router.register("exercises", ExerciseViewSet)
+router.register("plans", TrainingPlanViewSet)
+router.register("custom-plans", CustomPlanViewSet, basename="customplan")
+router.register("trainings", TrainingViewSet, basename="training")
+router.register("sets", SetViewSet, basename="set")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', include(router.urls)),
+    # POST {"username": <email>, "password": ...} returns {"token": ...} for apps
+    path('api/token/', obtain_auth_token, name='api_token'),
     path('', include('reg_log.urls')),
     path('', include('main.urls')),
     path('exercises/', include('exercises.urls')),
