@@ -5,10 +5,16 @@
 {% block content %}
 <div class="page-head">
 	<h1>{{ user.first_name }} {{ user.last_name }}</h1>
-	<a class="btn btn--ghost" href="{% url 'edit_account' %}">
-		<span class="material-symbols-outlined" aria-hidden="true">edit</span>
-		Edytuj dane
-	</a>
+	<div class="page-head__actions">
+		<a class="btn btn--ghost" href="{% url 'change_password' %}">
+			<span class="material-symbols-outlined" aria-hidden="true">lock</span>
+			Zmień hasło
+		</a>
+		<a class="btn btn--ghost" href="{% url 'edit_account' %}">
+			<span class="material-symbols-outlined" aria-hidden="true">edit</span>
+			Edytuj dane
+		</a>
+	</div>
 </div>
 
 <div class="profile">

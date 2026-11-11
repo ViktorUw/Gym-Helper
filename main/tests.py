@@ -17,6 +17,7 @@ class LoginRequiredTests(TestCase):
         pages = [
             ("userPage", []),
             ("edit_account", []),
+            ("change_password", []),
             ("add_weight", []),
             ("edit_weight", [1]),
             ("delete_weight", [1]),
@@ -82,6 +83,56 @@ class EditAccountTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.user.refresh_from_db()
         self.assertEqual(self.user.age, 25)
+
+
+class ChangePasswordTests(TestCase):
+    NEW = "Nowe-Haslo-456"
+
+    def setUp(self):
+        self.user = make_user("jan@test.pl")
+        self.client.force_login(self.user)
+
+    def change(self, old=PASSWORD, new1=NEW, new2=NEW):
+        return self.client.post(
+            reverse("change_password"),
+            {"old_password": old, "new_password1": new1, "new_password2": new2},
+        )
+
+    def test_change_password(self):
+        response = self.change()
+
+        self.assertRedirects(response, reverse("userPage"))
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password(self.NEW))
+
+    def test_stays_logged_in_after_change(self):
+        self.change()
+
+        self.assertEqual(self.client.get(reverse("userPage")).status_code, 200)
+
+    def test_can_log_in_with_new_password_only(self):
+        self.change()
+        self.client.logout()
+
+        old = self.client.post(reverse("login"), {"email": "jan@test.pl", "password1": PASSWORD})
+        new = self.client.post(reverse("login"), {"email": "jan@test.pl", "password1": self.NEW})
+
+        self.assertEqual(old.status_code, 200)
+        self.assertRedirects(new, reverse("mainPage"))
+
+    def test_wrong_old_password_rejected(self):
+        response = self.change(old="zle-haslo")
+
+        self.assertEqual(response.status_code, 200)
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password(PASSWORD))
+
+    def test_new_passwords_must_match(self):
+        response = self.change(new2="Inne-Haslo-789")
+
+        self.assertEqual(response.status_code, 200)
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password(PASSWORD))
 
 
 class WeightTests(TestCase):

@@ -1,5 +1,7 @@
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
@@ -42,6 +44,22 @@ def edit_account(request):
         form = AccountForm(instance=request.user)
 
     return render(request, "main/account_form.html", {"form": form})
+
+
+@login_required
+def change_password(request):
+    if request.method == "POST":
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            # Changing the password ends every session; keep this one logged in
+            update_session_auth_hash(request, user)
+            messages.success(request, "Hasło zostało zmienione")
+            return redirect("userPage")
+    else:
+        form = PasswordChangeForm(request.user)
+
+    return render(request, "main/password_form.html", {"form": form})
 
 
 def get_user_weight(request, weight_id):

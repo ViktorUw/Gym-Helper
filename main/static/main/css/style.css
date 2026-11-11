@@ -419,6 +419,18 @@ img {
   font-size: 0.95rem;
 }
 
+/* Help lists such as the password rules (the browser moves them out of the field's <p>) */
+.form--labelled ul:not(.errorlist) {
+  margin: -6px 0 0;
+  padding-left: 18px;
+  color: var(--dust);
+  font-size: 0.9rem;
+}
+
+.form--labelled p:empty {
+  display: none;
+}
+
 .weights__title {
   margin: 28px 0 12px;
 }
