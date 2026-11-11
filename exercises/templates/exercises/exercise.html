@@ -16,7 +16,7 @@
 	</div>
 	{% if exercise.video %}
 	<figure class="media">
-		<img src="/static/exercises/jpg/{{ exercise.video }}.gif" alt="Technika: {{ exercise.name }}" />
+		<video src="/static/exercises/jpg/{{ exercise.video }}.mp4" autoplay loop muted playsinline aria-label="Technika: {{ exercise.name }}"></video>
 	</figure>
 	{% endif %}
 </article>

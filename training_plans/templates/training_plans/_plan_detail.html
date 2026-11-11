@@ -23,7 +23,7 @@
 					</summary>
 					{% if exercise.video %}
 					<figure class="media">
-						<img loading="lazy" src="/static/exercises/jpg/{{ exercise.video }}.gif" alt="Technika: {{ exercise.name }}" />
+						<video src="/static/exercises/jpg/{{ exercise.video }}.mp4" autoplay loop muted playsinline preload="none" aria-label="Technika: {{ exercise.name }}"></video>
 					</figure>
 					{% endif %}
 				</details>
