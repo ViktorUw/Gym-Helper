@@ -950,11 +950,26 @@ img {
 
 /* ---------- Profile ---------- */
 
-.profile {
+.profile,
+.progress__grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   gap: 24px;
   align-items: start;
+}
+
+/* ---------- Exercise progress ---------- */
+
+.progress {
+  margin-top: 48px;
+}
+
+.progress .weight-now {
+  margin: 6px 0 20px;
+}
+
+.progress__hint {
+  margin-top: 12px;
 }
 
 .facts {
@@ -1186,6 +1201,7 @@ img {
   .exercise,
   .plan,
   .profile,
+  .progress__grid,
   .create-plan {
     grid-template-columns: 1fr;
     gap: 28px;

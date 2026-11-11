@@ -20,4 +20,33 @@
 	</figure>
 	{% endif %}
 </article>
+
+<section class="progress">
+	<h2 class="section__title">Twoje wyniki</h2>
+	{% if best %}
+	<div class="progress__grid">
+		<div class="panel">
+			<p class="muted">Rekord</p>
+			<p class="weight-now">{{ best.weight|floatformat:"-1" }}<small>kg × {{ best.repetitions }}</small></p>
+			<dl class="facts">
+				<div><dt>Serii</dt><dd>{{ sets_count }}</dd></div>
+				<div><dt>Dni treningowych</dt><dd>{{ days_count }}</dd></div>
+				<div><dt>Ostatnio</dt><dd>{{ last_date|date:"d.m.Y" }}</dd></div>
+			</dl>
+		</div>
+		<div class="panel">
+			<h3>Najcięższa seria w każdym dniu</h3>
+			{% if chart %}
+			<img class="chart" src="data:image/png;base64,{{ chart }}" alt="Wykres najcięższej serii w kolejnych dniach treningowych" />
+			{% else %}
+			<p class="muted progress__hint">Wykres pojawi się, gdy zrobisz to ćwiczenie w co najmniej dwa różne dni.</p>
+			{% endif %}
+		</div>
+	</div>
+	{% else %}
+	<div class="empty">
+		<p>Nie masz jeszcze serii tego ćwiczenia. Zapisz serię podczas treningu, a tutaj pojawi się Twój rekord i wykres postępu.</p>
+	</div>
+	{% endif %}
+</section>
 {% endblock %}
