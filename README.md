@@ -17,7 +17,8 @@ A web application for gym training built with **Django**. Users can browse exerc
 
 - **Python 3**, **Django 5.2**
 - **Django REST Framework** for the API
-- **SQLite**
+- **SQLite** for local development, **PostgreSQL** in Docker
+- **Docker Compose** with **gunicorn** and **nginx**
 - **matplotlib** for the weight progress chart
 - HTML templates and static files (CSS, images)
 
@@ -69,6 +70,35 @@ completed_trainings/   # Starting workouts, logging sets, history
    ```
 6. Open http://127.0.0.1:8000/ in your browser. The admin panel is at `/admin/` (log in with the email you used in `createsuperuser`).
 
+## Running with Docker
+
+Docker Compose runs the app the way it would run on a server: PostgreSQL, Django with gunicorn, and nginx in front serving the static files and videos.
+
+1. Create `.env.docker` from the example and fill in `SECRET_KEY` and `POSTGRES_PASSWORD`:
+   ```bash
+   cp .env.docker.example .env.docker
+   ```
+2. Build and start:
+   ```bash
+   docker compose up -d --build
+   ```
+   On the first start the app applies migrations and loads the sample exercises and plans.
+3. Create an admin account:
+   ```bash
+   docker compose exec web python manage.py createsuperuser
+   ```
+4. Open http://localhost:8080/.
+
+Useful commands:
+
+```bash
+docker compose logs -f web    # app logs
+docker compose down           # stop (the database is kept)
+docker compose down -v        # stop and delete the database
+```
+
+To serve the app on another address (for example a server's domain), add it to `ALLOWED_HOSTS` and `CSRF_TRUSTED_ORIGINS` in `.env.docker`.
+
 ## REST API
 
 All endpoints are under `/api/` and need a logged-in user. In the browser, log in on the website and open http://127.0.0.1:8000/api/ to browse the API. Apps log in with a token:
@@ -93,4 +123,4 @@ Each list endpoint also has a detail URL, for example `/api/trainings/<id>/`. Ot
 
 A project presentation (in Polish) is included: `GymHeplerPrez.pdf`.
 
-> The interface is in Polish. This is a study project: `.env.example` sets `DEBUG=True` for local development, and the project is not configured for production.
+> The interface is in Polish. This is a study project: `.env.example` sets `DEBUG=True` for local development. The Docker setup runs with `DEBUG=False` over plain HTTP; a public server also needs HTTPS in front of it.

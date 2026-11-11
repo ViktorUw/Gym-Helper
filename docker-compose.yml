@@ -1,0 +1,38 @@
+# Start: docker compose up -d --build    Site: http://localhost:8080
+# Settings and passwords come from .env.docker (copy it from .env.docker.example).
+services:
+  db:
+    image: postgres:17-alpine
+    env_file: .env.docker
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      target: app
+    env_file: .env.docker
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: .
+      target: nginx
+    ports:
+      - "8080:80"
+    depends_on:
+      - web
+    restart: unless-stopped
+
+volumes:
+  # The database lives here and survives `docker compose down` (not `down -v`)
+  pgdata:

@@ -1,0 +1,15 @@
+# Not needed inside the image (and secrets must never be copied in)
+.git
+.venv
+venv
+__pycache__
+*.pyc
+.env
+.env.docker
+db.sqlite3*
+staticfiles
+*.pdf
+dane.jpg
+TODO.md
+.prettierignore
+.vscode
