@@ -234,6 +234,12 @@ img {
   max-width: 60ch;
 }
 
+.page-head__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .back {
   display: inline-flex;
   align-items: center;

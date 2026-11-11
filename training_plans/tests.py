@@ -114,3 +114,46 @@ class ReadyPlanTests(PlanTestCase):
         response = self.client.get(reverse("trainingPlanPage", args=[9999]))
 
         self.assertEqual(response.status_code, 404)
+
+
+class EditPlanTests(PlanTestCase):
+    def setUp(self):
+        super().setUp()
+        self.second_exercise = Exercises.objects.create(
+            name="Podciąganie", category=self.exercise.category
+        )
+
+    def edit(self, **data):
+        fields = {"name": "Nowa nazwa", "description": "Nowy opis", "exercises": [self.second_exercise.pk]}
+        fields.update(data)
+        return self.client.post(reverse("edit_plan", args=[self.plan.pk]), fields)
+
+    def test_edit_form_shows_current_values(self):
+        response = self.client.get(reverse("edit_plan", args=[self.plan.pk]))
+
+        self.assertContains(response, 'value="Mój plan"')
+        self.assertEqual(list(response.context["form"]["exercises"].value()), [self.exercise.pk])
+
+    def test_edit_plan(self):
+        response = self.edit()
+
+        self.assertRedirects(response, reverse("customPlanPage", args=[self.plan.pk]))
+        self.plan.refresh_from_db()
+        self.assertEqual(self.plan.name, "Nowa nazwa")
+        self.assertEqual(list(self.plan.exercises.all()), [self.second_exercise])
+        self.assertIn(self.user, self.plan.user.all())
+
+    def test_edit_without_exercises_rejected(self):
+        response = self.edit(exercises=[])
+
+        self.assertEqual(response.status_code, 200)
+        self.plan.refresh_from_db()
+        self.assertEqual(self.plan.name, "Mój plan")
+
+    def test_cannot_edit_other_users_plan(self):
+        self.client.force_login(self.other)
+
+        self.assertEqual(self.client.get(reverse("edit_plan", args=[self.plan.pk])).status_code, 404)
+        self.assertEqual(self.edit().status_code, 404)
+        self.plan.refresh_from_db()
+        self.assertEqual(self.plan.name, "Mój plan")

@@ -3,5 +3,5 @@
 {% block title %}{{ custom_plan.name }} – {% endblock %}
 
 {% block content %}
-{% include 'training_plans/_plan_detail.html' with plan=custom_plan %}
+{% include 'training_plans/_plan_detail.html' with plan=custom_plan editable=True %}
 {% endblock %}

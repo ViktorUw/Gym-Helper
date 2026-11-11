@@ -37,6 +37,9 @@
 		<li>
 			<a class="rows__main" href="{% url 'customPlanPage' plan.pk %}">{{ plan.name }}</a>
 			<span class="rows__meta">{{ plan.exercises.count }} ćw.</span>
+			<a class="icon-btn" href="{% url 'edit_plan' plan.pk %}" aria-label="Edytuj plan {{ plan.name }}" title="Edytuj">
+				<span class="material-symbols-outlined" aria-hidden="true">edit</span>
+			</a>
 			<form method="POST" action="{% url 'delete_plan' plan.pk %}"
 			      onsubmit="return confirm('Usunąć plan „{{ plan.name|escapejs }}”?')">
 				{% csrf_token %}

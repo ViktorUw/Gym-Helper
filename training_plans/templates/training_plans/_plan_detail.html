@@ -1,4 +1,4 @@
-{# Shared by training_plan.html and custom_plan.html; expects `plan`. #}
+{# Shared by training_plan.html and custom_plan.html; expects `plan`, and `editable` for the user's own plans. #}
 <a class="back" href="{% url 'trainingPlansPage' %}">
 	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
 	Plany
@@ -6,7 +6,15 @@
 
 <div class="page-head">
 	<h1>{{ plan.name }}</h1>
-	<a class="btn btn--primary" href="{% url 'add_weightPage' %}">Zacznij trening</a>
+	<div class="page-head__actions">
+		{% if editable %}
+		<a class="btn btn--ghost" href="{% url 'edit_plan' plan.pk %}">
+			<span class="material-symbols-outlined" aria-hidden="true">edit</span>
+			Edytuj plan
+		</a>
+		{% endif %}
+		<a class="btn btn--primary" href="{% url 'add_weightPage' %}">Zacznij trening</a>
+	</div>
 </div>
 
 <div class="plan">

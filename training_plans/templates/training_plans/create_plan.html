@@ -1,25 +1,33 @@
 {% extends 'main/layout.html' %}
 
-{% block title %}Nowy plan – {% endblock %}
+{# Used to create a plan, and to edit one when `custom_plan` is given. #}
+{% block title %}{% if custom_plan %}Edycja planu{% else %}Nowy plan{% endif %} – {% endblock %}
 
 {% block content %}
+{% if custom_plan %}
+<a class="back" href="{% url 'customPlanPage' custom_plan.pk %}">
+	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+	{{ custom_plan.name }}
+</a>
+{% else %}
 <a class="back" href="{% url 'trainingPlansPage' %}">
 	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
 	Plany
 </a>
+{% endif %}
 
 <div class="page-head">
-	<h1>Nowy plan</h1>
+	<h1>{% if custom_plan %}Edycja planu{% else %}Nowy plan{% endif %}</h1>
 </div>
 
-<form class="create-plan" action="{% url 'create_plan' %}" method="POST">
+<form class="create-plan" action="" method="POST">
 	{% csrf_token %}
 	<div class="form">
 		{{ form.name.errors }}
 		{{ form.name }}
 		{{ form.description.errors }}
 		{{ form.description }}
-		<button class="btn btn--primary btn--block" type="submit">Zapisz plan</button>
+		<button class="btn btn--primary btn--block" type="submit">{% if custom_plan %}Zapisz zmiany{% else %}Zapisz plan{% endif %}</button>
 	</div>
 
 	<fieldset class="picker">

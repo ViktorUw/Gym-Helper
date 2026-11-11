@@ -58,6 +58,22 @@ def create_plan(request):
 
 
 @login_required
+def edit_plan(request, custom_plan_id):
+    custom_plan = get_object_or_404(CustomPlans, pk=custom_plan_id, user=request.user)
+    if request.method == "POST":
+        form = CreateCustomPlanForm(request.POST, instance=custom_plan)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Plan został zmieniony")
+            return redirect("customPlanPage", custom_plan_id=custom_plan.pk)
+    else:
+        form = CreateCustomPlanForm(instance=custom_plan)
+
+    context = {"form": form, "custom_plan": custom_plan}
+    return render(request, "training_plans/create_plan.html", context)
+
+
+@login_required
 @require_POST
 def delete_plan(request, custom_plan_id):
     custom_plan = get_object_or_404(CustomPlans, pk=custom_plan_id, user=request.user)
