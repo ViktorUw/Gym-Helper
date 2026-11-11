@@ -39,12 +39,25 @@ class TrainingTestCase(TestCase):
 
 class LoginRequiredTests(TestCase):
     def test_pages_redirect_to_login(self):
-        for name in ["trainingsPage", "add_weightPage", "choseTrainingPlanPage"]:
+        # Ids do not need to exist: the login check runs before the page looks them up
+        pages = [
+            ("trainingsPage", []),
+            ("add_weightPage", []),
+            ("choseTrainingPlanPage", []),
+            ("ct_create_trainingsPage", [1]),
+            ("do_seriesPage", [1]),
+            ("edit_series", [1]),
+            ("delete_series", [1]),
+            ("delete_training", [1]),
+        ]
+        for name, args in pages:
             with self.subTest(page=name):
-                url = reverse(name)
+                url = reverse(name, args=args)
                 response = self.client.get(url)
 
-                self.assertRedirects(response, f"{reverse('login')}?next={url}")
+                self.assertRedirects(
+                    response, f"{reverse('login')}?next={url}", fetch_redirect_response=False
+                )
 
 
 class SeriesTests(TrainingTestCase):
@@ -154,3 +167,35 @@ class EditDeleteSeriesTests(TrainingTestCase):
 
         self.series.refresh_from_db()
         self.assertEqual(self.series.repetitions, 10)
+
+
+class TrainingSummaryTests(TrainingTestCase):
+    def setUp(self):
+        super().setUp()
+        self.url = reverse("ct_create_trainingsPage", args=[self.training.pk])
+
+    def test_no_summary_without_sets(self):
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.context["summary"]["sets"], 0)
+        self.assertNotContains(response, 'class="summary"')
+
+    def test_summary_totals(self):
+        second = Exercises.objects.create(name="Podciąganie", category=self.exercise.category)
+        for exercise, repetitions, weight in [
+            (self.exercise, 10, 40),
+            (self.exercise, 8, 45),
+            (second, 12, 0),
+        ]:
+            CompletedExercise.objects.create(
+                training=self.training, exercise=exercise, repetitions=repetitions, weight=weight
+            )
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(
+            response.context["summary"],
+            # volume: 10 × 40 + 8 × 45 + 12 × 0 = 760
+            {"exercises": 2, "sets": 3, "repetitions": 30, "volume": 760},
+        )
+        self.assertContains(response, 'class="summary"')

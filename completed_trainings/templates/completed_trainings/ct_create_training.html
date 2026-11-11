@@ -16,6 +16,17 @@
 	</a>
 </div>
 
+{% if summary.sets %}
+<dl class="summary">
+	<div><dt>Ćwiczenia</dt><dd>{{ summary.exercises }}</dd></div>
+	<div><dt>Serie</dt><dd>{{ summary.sets }}</dd></div>
+	<div><dt>Powtórzenia</dt><dd>{{ summary.repetitions }}</dd></div>
+	<div title="Suma: powtórzenia × ciężar we wszystkich seriach">
+		<dt>Łączny ciężar</dt><dd>{{ summary.volume|floatformat:"0g" }}<small>kg</small></dd>
+	</div>
+</dl>
+{% endif %}
+
 {% if not plan_id %}
 <p class="notice">Plan tego treningu został usunięty. Zapisane serie zostają, a nową serię możesz dodać do dowolnego ćwiczenia.</p>
 {% endif %}

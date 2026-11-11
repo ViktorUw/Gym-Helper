@@ -770,6 +770,41 @@ img {
 
 /* ---------- Workout log ---------- */
 
+/* Totals at the top of a training */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 32px;
+}
+
+.summary div {
+  padding: 16px 20px;
+  background: var(--rubber);
+  border: 1px solid var(--steel);
+  border-radius: var(--radius);
+}
+
+.summary dt {
+  color: var(--dust);
+  font-size: 0.9rem;
+}
+
+.summary dd {
+  margin: 4px 0 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.summary dd small {
+  font-size: 1.1rem;
+  color: var(--dust);
+  margin-left: 4px;
+}
+
 .notice {
   color: var(--dust);
   margin-bottom: 24px;
@@ -1209,6 +1244,9 @@ img {
 
   .actions {
     grid-template-columns: 1fr;
+  }
+  .summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .action {
     min-height: 0;

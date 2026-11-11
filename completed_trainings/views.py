@@ -86,14 +86,13 @@ def ct_create_training(request, training_id):
     plan_id = training.training_plan_id or training.custom_plan_id
     exercises = training_exercises(training)
 
-    completed_exercises = CompletedExercise.objects.filter(training=training)
+    completed_exercises = list(CompletedExercise.objects.filter(training=training))
     # Sets grouped per exercise, so the template can number them 1, 2, 3... for each exercise
     exercise_sets = [
         (ex, [ce for ce in completed_exercises if ce.exercise_id == ex.id])
         for ex in exercises
     ]
 
-    # return HttpResponse(completed_exercises[0])
     content = {
         "training_name": training_name,
         "plan_id": plan_id,
@@ -101,12 +100,22 @@ def ct_create_training(request, training_id):
         "training_id": training_id,
         "completed_exercises": completed_exercises,
         "exercise_sets": exercise_sets,
+        "summary": training_summary(completed_exercises),
     }
 
     return render(request, "completed_trainings/ct_create_training.html", content)
 
 
-@login_required
+def training_summary(sets):
+    """Totals shown at the top of a training; volume is the sum of repetitions × weight."""
+    return {
+        "exercises": len({s.exercise_id for s in sets}),
+        "sets": len(sets),
+        "repetitions": sum(s.repetitions for s in sets),
+        "volume": sum(s.repetitions * s.weight for s in sets),
+    }
+
+
 def series_exercises(training):
     """Exercises a set can be logged for; without a plan (it was deleted) any exercise."""
     if training.training_plan_id or training.custom_plan_id:
@@ -121,6 +130,7 @@ def get_user_series(request, series_id):
     )
 
 
+@login_required
 def do_series(request, training_id):
     training = get_user_training(request, training_id)
     exercises = series_exercises(training)
