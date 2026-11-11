@@ -103,3 +103,54 @@ class DeletePlanTests(TrainingTestCase):
         training.refresh_from_db()
         self.assertIsNone(training.custom_plan)
         self.assertEqual(CompletedExercise.objects.filter(training=training).count(), 1)
+
+
+class EditDeleteSeriesTests(TrainingTestCase):
+    def setUp(self):
+        super().setUp()
+        self.series = CompletedExercise.objects.create(
+            training=self.training, exercise=self.exercise, repetitions=10, weight=40
+        )
+        self.training_url = reverse("ct_create_trainingsPage", args=[self.training.pk])
+
+    def edit(self, repetitions=12, weight=45):
+        return self.client.post(
+            reverse("edit_series", args=[self.series.pk]),
+            {"exercise": self.exercise.pk, "repetitions": repetitions, "weight": weight},
+        )
+
+    def test_edit_series(self):
+        response = self.edit()
+
+        self.assertRedirects(response, self.training_url)
+        self.series.refresh_from_db()
+        self.assertEqual((self.series.repetitions, self.series.weight), (12, 45))
+
+    def test_edit_rejects_invalid_values(self):
+        response = self.edit(repetitions=0)
+
+        self.assertEqual(response.status_code, 200)
+        self.series.refresh_from_db()
+        self.assertEqual(self.series.repetitions, 10)
+
+    def test_delete_series(self):
+        response = self.client.post(reverse("delete_series", args=[self.series.pk]))
+
+        self.assertRedirects(response, self.training_url)
+        self.assertFalse(CompletedExercise.objects.exists())
+
+    def test_delete_series_needs_post(self):
+        response = self.client.get(reverse("delete_series", args=[self.series.pk]))
+
+        self.assertEqual(response.status_code, 405)
+        self.assertTrue(CompletedExercise.objects.exists())
+
+    def test_cannot_edit_or_delete_other_users_series(self):
+        self.client.force_login(self.other)
+
+        self.assertEqual(self.edit().status_code, 404)
+        response = self.client.post(reverse("delete_series", args=[self.series.pk]))
+        self.assertEqual(response.status_code, 404)
+
+        self.series.refresh_from_db()
+        self.assertEqual(self.series.repetitions, 10)

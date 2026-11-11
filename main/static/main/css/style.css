@@ -823,6 +823,51 @@ img {
   color: var(--dust);
 }
 
+.sets .sets__actions {
+  width: 104px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.sets__actions form {
+  display: inline;
+}
+
+/* Small square button with only an icon (edit / delete a set) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--dust);
+  cursor: pointer;
+}
+
+.icon-btn:hover {
+  background: var(--rubber-hi);
+  color: var(--chalk);
+}
+
+.icon-btn--danger:hover {
+  color: var(--danger);
+}
+
+/* Text for screen readers only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 /* ---------- Home dashboard ---------- */
 
 .hello {
@@ -1170,6 +1215,12 @@ img {
   }
   .sets th,
   .sets td {
-    padding: 10px 12px;
+    padding: 10px 8px;
+  }
+  .sets th:first-child {
+    width: 56px;
+  }
+  .sets .sets__actions {
+    width: 84px;
   }
 }

@@ -29,6 +29,7 @@
 				<th scope="col">Seria</th>
 				<th scope="col">Powtórzenia</th>
 				<th scope="col">Ciężar</th>
+				<th scope="col" class="sets__actions"><span class="sr-only">Akcje</span></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -37,9 +38,20 @@
 				<th scope="row">{{ forloop.counter }}</th>
 				<td>{{ completed_ex.repetitions }}</td>
 				<td>{{ completed_ex.weight }} kg</td>
+				<td class="sets__actions">
+					<a class="icon-btn" href="{% url 'edit_series' completed_ex.pk %}" aria-label="Edytuj serię {{ forloop.counter }}" title="Edytuj">
+						<span class="material-symbols-outlined" aria-hidden="true">edit</span>
+					</a>
+					<form method="POST" action="{% url 'delete_series' completed_ex.pk %}" onsubmit="return confirm('Usunąć serię {{ forloop.counter }}?')">
+						{% csrf_token %}
+						<button type="submit" class="icon-btn icon-btn--danger" aria-label="Usuń serię {{ forloop.counter }}" title="Usuń">
+							<span class="material-symbols-outlined" aria-hidden="true">delete</span>
+						</button>
+					</form>
+				</td>
 			</tr>
 			{% empty %}
-			<tr class="sets__none"><td colspan="3">Brak serii</td></tr>
+			<tr class="sets__none"><td colspan="4">Brak serii</td></tr>
 			{% endfor %}
 		</tbody>
 	</table>

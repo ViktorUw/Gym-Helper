@@ -1,21 +1,21 @@
 {% extends 'main/layout.html' %}
 
-{% block title %}Nowa seria – {% endblock %}
+{% block title %}{% if editing %}Edycja serii{% else %}Nowa seria{% endif %} – {% endblock %}
 {% block page_class %}page--narrow{% endblock %}
 
 {% block content %}
-<a class="back" href="{% url 'ct_create_trainingsPage' request.resolver_match.kwargs.training_id %}">
+<a class="back" href="{% url 'ct_create_trainingsPage' training_id %}">
 	<span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
 	Trening
 </a>
 
 <div class="panel">
-	<h1>Nowa seria</h1>
+	<h1>{% if editing %}Edycja serii{% else %}Nowa seria{% endif %}</h1>
 	<p class="page-head__lead">Wybierz ćwiczenie i wpisz, ile zrobiłeś.</p>
 	<form class="form" method="POST" action="" novalidate>
 		{% csrf_token %}
 		{{ add_exercise_form.as_p }}
-		<button class="btn btn--primary btn--block" type="submit">Zapisz serię</button>
+		<button class="btn btn--primary btn--block" type="submit">{% if editing %}Zapisz zmiany{% else %}Zapisz serię{% endif %}</button>
 	</form>
 </div>
 {% endblock %}

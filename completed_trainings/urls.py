@@ -14,6 +14,8 @@ urlpatterns = [
         name="ct_create_trainingsPage",
     ),
     path("do_series/<int:training_id>", views.do_series, name="do_seriesPage"),
+    path("edit_series/<int:series_id>/", views.edit_series, name="edit_series"),
+    path("delete_series/<int:series_id>/", views.delete_series, name="delete_series"),
     path(
         "delete_training/<int:training_id>/",
         views.delete_training,

@@ -107,14 +107,23 @@ def ct_create_training(request, training_id):
 
 
 @login_required
+def series_exercises(training):
+    """Exercises a set can be logged for; without a plan (it was deleted) any exercise."""
+    if training.training_plan_id or training.custom_plan_id:
+        return training_exercises(training)
+    return Exercises.objects.all()
+
+
+def get_user_series(request, series_id):
+    """The user's own set, or 404 (also for a set in someone else's training)."""
+    return get_object_or_404(
+        CompletedExercise, pk=series_id, training__user=request.user
+    )
+
+
 def do_series(request, training_id):
     training = get_user_training(request, training_id)
-    # Without a plan (it was deleted) any exercise can be logged
-    exercises = (
-        training_exercises(training)
-        if (training.training_plan_id or training.custom_plan_id)
-        else Exercises.objects.all()
-    )
+    exercises = series_exercises(training)
 
     if request.method == "POST":
         add_exercise_form = AddExerciseForm(request.POST, exercises=exercises)
@@ -130,8 +139,40 @@ def do_series(request, training_id):
     return render(
         request,
         "completed_trainings/do_series.html",
-        {"add_exercise_form": add_exercise_form},
+        {"add_exercise_form": add_exercise_form, "training_id": training_id},
     )
+
+
+@login_required
+def edit_series(request, series_id):
+    series = get_user_series(request, series_id)
+    training_id = series.training_id
+    exercises = series_exercises(series.training)
+
+    if request.method == "POST":
+        form = AddExerciseForm(request.POST, instance=series, exercises=exercises)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Seria została zmieniona")
+            return redirect("ct_create_trainingsPage", training_id=training_id)
+    else:
+        form = AddExerciseForm(instance=series, exercises=exercises)
+
+    return render(
+        request,
+        "completed_trainings/do_series.html",
+        {"add_exercise_form": form, "training_id": training_id, "editing": True},
+    )
+
+
+@login_required
+@require_POST
+def delete_series(request, series_id):
+    series = get_user_series(request, series_id)
+    training_id = series.training_id
+    series.delete()
+    messages.success(request, "Seria została usunięta")
+    return redirect("ct_create_trainingsPage", training_id=training_id)
 
 
 @login_required
